@@ -3,183 +3,185 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04C1BF3449046F916A93963E /* LegalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352C6CA937ECF8EF61ABBF1 /* LegalContent.swift */; };
-		08D994C08E381E4C12E93E0A /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D6ACC16F616DC0EF8879E2 /* RecordingViewModel.swift */; };
-		1F60C415C18C2C67379CE5F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE67585F94275DF4AB547A70 /* Assets.xcassets */; };
-		26D5EFA602E4A6704AC3158D /* LastRecordingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3F6A4B88488DEFC9E1128 /* LastRecordingManager.swift */; };
-		2E0877F6326A43F7A1BC0CEF /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5DF459225DA1ECD2D6EE36 /* AudioService.swift */; };
-		333258B096C82658632A49B5 /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B43522D9DF6ABAE884D28A7 /* ExportService.swift */; };
-		37F275E46D0625CFBA7334CE /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBD653037B1E508952E254D /* DownloadView.swift */; };
-		5240902DBD1FA56852168296 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F9BC3F60C2E5F00AF020A /* ShareSheet.swift */; };
-		59073FDA92EC33A795C596CC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8A5359E6F4DBF9FA8F53B9 /* Config.swift */; };
-		605955EFA2301077DAC1B6B9 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3AA954C3A37F5B951C2534 /* KeychainManager.swift */; };
-		61CCB42E24269DBB3D62EE8B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36238F54037D99870D7EBF72 /* ContentView.swift */; };
-		7B160C24AE1F49B215AE119F /* TranscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B5892C3C85A080D7A4BA3 /* TranscriptionView.swift */; };
-		917C5F15696D0EB325076677 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E353D191F0D2887730F5C111 /* LaunchScreen.storyboard */; };
-		9C77C37E371A339803F8C4CE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9232D3F25F7F37A54C369052 /* SettingsView.swift */; };
-		A0E7B9A9E57EA231DBCA47EC /* TextProcessingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4241A227CD7313387576DD /* TextProcessingService.swift */; };
-		BDE9488F3CC35351273924B2 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAAD3CCF07EE48E29011B66 /* Models.swift */; };
-		C54B7B6E08039E83AB6DEF30 /* JusstalkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8A8838D0D1181CFE6A44DD /* JusstalkApp.swift */; };
-		E27DAB727DE912786673B6B5 /* TranscriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C70DC4F77CC2425440BD60A /* TranscriptionViewModel.swift */; };
-		F5A3F5934D98F76191AC04A6 /* TranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47BC3D408A3A6E0D14D6B8F /* TranscriptionService.swift */; };
+		152363866DC5E3FD5DBC44FC /* TextProcessingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958BC3E43023AE562C4229F /* TextProcessingService.swift */; };
+		171E6670ED15A27F20413746 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7AAD9C273FF7F5D754727E /* KeychainManager.swift */; };
+		22B3545B453B474E8408F540 /* JusstalkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBA00637E69211E86990F3 /* JusstalkApp.swift */; };
+		2F3DADAB0FEF629813BE3C1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0541AAEA716303D352682F /* ContentView.swift */; };
+		37670B9CE72FD4E774916139 /* LastRecordingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C4E97E04D787EEC73A421 /* LastRecordingManager.swift */; };
+		382A242CABE9DE4AC40077FA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE070C698722EEBD77E7472 /* Config.swift */; };
+		45DC2168F42BDE386B69911B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C7AF0B7F1ABBDB83BA2CCF0 /* LaunchScreen.storyboard */; };
+		67E15F7409ED52FEB4D2958D /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D491E7C5D730A3589CC487E9 /* RecordingViewModel.swift */; };
+		74B5FACF3E5F11EBE48D5E66 /* LegalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC022548A11E15975C5544D /* LegalContent.swift */; };
+		795E08102CD3C3231D077F05 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE5D746D37C4F9E1554C7B0 /* Models.swift */; };
+		87E0A749320A50F1F93E0F10 /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930FCF5AF8CAF1F2C59B64AC /* ExportService.swift */; };
+		8F84BDFA636618C41F84F542 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951F8B224EB42B70F2357B32 /* Assets.xcassets */; };
+		A054B8D06DEC1CF1D92A353F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645AA94BE2E242CEB7C70FE5 /* SettingsView.swift */; };
+		C28F988C512EB4EF5272D6C2 /* TranscriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54186749D2D14625799AC8B7 /* TranscriptionViewModel.swift */; };
+		CA4FEA639A455B13EE4C5026 /* TranscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8CE43AB45D8E92860BA41D /* TranscriptionView.swift */; };
+		D3F67679DC7E9331BDDD9F81 /* TranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69330308DE314883EA78B61C /* TranscriptionService.swift */; };
+		E608E28D7EBB241287277D4C /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DA736FFC5EE68E6E04E158 /* AudioService.swift */; };
+		F46D656A34577B0F32C668B3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = EE749AC1495DF6E0FF4D1C57 /* PrivacyInfo.xcprivacy */; };
+		FC30B9A6C56A47B45E5AF11D /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2EDEA5774BAA0B108A31DD /* ShareSheet.swift */; };
+		FE22A4F27168F31C5E54C525 /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B515FDB33927B6893F0B141E /* DownloadView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		287ED0C0BDF2DF2B2FD6CEB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		36238F54037D99870D7EBF72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		4C3B5892C3C85A080D7A4BA3 /* TranscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionView.swift; sourceTree = "<group>"; };
-		5CF3F6A4B88488DEFC9E1128 /* LastRecordingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastRecordingManager.swift; sourceTree = "<group>"; };
-		6352C6CA937ECF8EF61ABBF1 /* LegalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalContent.swift; sourceTree = "<group>"; };
-		69628548593AE2490CE7024B /* jusstalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jusstalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B43522D9DF6ABAE884D28A7 /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
-		6C5DF459225DA1ECD2D6EE36 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
-		7C70DC4F77CC2425440BD60A /* TranscriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionViewModel.swift; sourceTree = "<group>"; };
-		7DBD653037B1E508952E254D /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
-		8B5F9BC3F60C2E5F00AF020A /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
-		9232D3F25F7F37A54C369052 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		9E8A8838D0D1181CFE6A44DD /* JusstalkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JusstalkApp.swift; sourceTree = "<group>"; };
-		AE67585F94275DF4AB547A70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B47BC3D408A3A6E0D14D6B8F /* TranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionService.swift; sourceTree = "<group>"; };
-		C3D6ACC16F616DC0EF8879E2 /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
-		CA8A5359E6F4DBF9FA8F53B9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		DFAAD3CCF07EE48E29011B66 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		E353D191F0D2887730F5C111 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		ED4241A227CD7313387576DD /* TextProcessingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextProcessingService.swift; sourceTree = "<group>"; };
-		EF3AA954C3A37F5B951C2534 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		0A2C4E97E04D787EEC73A421 /* LastRecordingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastRecordingManager.swift; sourceTree = "<group>"; };
+		0E0541AAEA716303D352682F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1EE5D746D37C4F9E1554C7B0 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		2A2EDEA5774BAA0B108A31DD /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		51706EBD964F2AFD623E8F8D /* Jusstalk.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Jusstalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		54186749D2D14625799AC8B7 /* TranscriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionViewModel.swift; sourceTree = "<group>"; };
+		55DA736FFC5EE68E6E04E158 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		645AA94BE2E242CEB7C70FE5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		69330308DE314883EA78B61C /* TranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionService.swift; sourceTree = "<group>"; };
+		6EC022548A11E15975C5544D /* LegalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalContent.swift; sourceTree = "<group>"; };
+		8958BC3E43023AE562C4229F /* TextProcessingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextProcessingService.swift; sourceTree = "<group>"; };
+		8D7AAD9C273FF7F5D754727E /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		930FCF5AF8CAF1F2C59B64AC /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
+		951F8B224EB42B70F2357B32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9C7AF0B7F1ABBDB83BA2CCF0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B515FDB33927B6893F0B141E /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
+		D491E7C5D730A3589CC487E9 /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
+		E2CBA00637E69211E86990F3 /* JusstalkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JusstalkApp.swift; sourceTree = "<group>"; };
+		EDE070C698722EEBD77E7472 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		EE749AC1495DF6E0FF4D1C57 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		FF8CE43AB45D8E92860BA41D /* TranscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		2D9E299F12782EB709A3167B /* Services */ = {
+		054D8FEC6D294F423AF0631E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				6C5DF459225DA1ECD2D6EE36 /* AudioService.swift */,
-				6B43522D9DF6ABAE884D28A7 /* ExportService.swift */,
-				ED4241A227CD7313387576DD /* TextProcessingService.swift */,
-				B47BC3D408A3A6E0D14D6B8F /* TranscriptionService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		525089880C6F0FA1A8D952D0 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				AE67585F94275DF4AB547A70 /* Assets.xcassets */,
-				287ED0C0BDF2DF2B2FD6CEB4 /* Info.plist */,
-				E353D191F0D2887730F5C111 /* LaunchScreen.storyboard */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		59DCF2C6BD67913FBE039780 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				36238F54037D99870D7EBF72 /* ContentView.swift */,
-				7DBD653037B1E508952E254D /* DownloadView.swift */,
-				9232D3F25F7F37A54C369052 /* SettingsView.swift */,
-				8B5F9BC3F60C2E5F00AF020A /* ShareSheet.swift */,
-				4C3B5892C3C85A080D7A4BA3 /* TranscriptionView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		9C4C928AC3F001234D3C6D16 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				69628548593AE2490CE7024B /* jusstalk.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9C89140E0F5BC008A3B725D4 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				9E8A8838D0D1181CFE6A44DD /* JusstalkApp.swift */,
-				BE006F8D311FAD7BDCD65985 /* Models */,
-				2D9E299F12782EB709A3167B /* Services */,
-				D4A56BCA08F43F7C7D11DE01 /* Utilities */,
-				E33A53F6A390BC582C4E8FFB /* ViewModels */,
-				59DCF2C6BD67913FBE039780 /* Views */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		AFCF34946C7D5FD476EA9C8F = {
-			isa = PBXGroup;
-			children = (
-				525089880C6F0FA1A8D952D0 /* Resources */,
-				9C89140E0F5BC008A3B725D4 /* Sources */,
-				9C4C928AC3F001234D3C6D16 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		BE006F8D311FAD7BDCD65985 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				DFAAD3CCF07EE48E29011B66 /* Models.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		D4A56BCA08F43F7C7D11DE01 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				CA8A5359E6F4DBF9FA8F53B9 /* Config.swift */,
-				EF3AA954C3A37F5B951C2534 /* KeychainManager.swift */,
-				5CF3F6A4B88488DEFC9E1128 /* LastRecordingManager.swift */,
-				6352C6CA937ECF8EF61ABBF1 /* LegalContent.swift */,
+				EDE070C698722EEBD77E7472 /* Config.swift */,
+				8D7AAD9C273FF7F5D754727E /* KeychainManager.swift */,
+				0A2C4E97E04D787EEC73A421 /* LastRecordingManager.swift */,
+				6EC022548A11E15975C5544D /* LegalContent.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		E33A53F6A390BC582C4E8FFB /* ViewModels */ = {
+		0D1DF70AFA4092D620553E1B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C3D6ACC16F616DC0EF8879E2 /* RecordingViewModel.swift */,
-				7C70DC4F77CC2425440BD60A /* TranscriptionViewModel.swift */,
+				1EE5D746D37C4F9E1554C7B0 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3C8FBB08F6B4717B7BDD8BBF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				55DA736FFC5EE68E6E04E158 /* AudioService.swift */,
+				930FCF5AF8CAF1F2C59B64AC /* ExportService.swift */,
+				8958BC3E43023AE562C4229F /* TextProcessingService.swift */,
+				69330308DE314883EA78B61C /* TranscriptionService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8EC129B9D0C1422446083556 = {
+			isa = PBXGroup;
+			children = (
+				CF381751C9233A6876F1FE8D /* Resources */,
+				B6BF60E934FAC76447ACBB5B /* Sources */,
+				B6CD06E9AF875A4142C18D7B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B6BF60E934FAC76447ACBB5B /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				E2CBA00637E69211E86990F3 /* JusstalkApp.swift */,
+				0D1DF70AFA4092D620553E1B /* Models */,
+				3C8FBB08F6B4717B7BDD8BBF /* Services */,
+				054D8FEC6D294F423AF0631E /* Utilities */,
+				C21B3029401EF341F48AFF50 /* ViewModels */,
+				CD06F1F722E986C39CB11D0F /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		B6CD06E9AF875A4142C18D7B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				51706EBD964F2AFD623E8F8D /* Jusstalk.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C21B3029401EF341F48AFF50 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D491E7C5D730A3589CC487E9 /* RecordingViewModel.swift */,
+				54186749D2D14625799AC8B7 /* TranscriptionViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CD06F1F722E986C39CB11D0F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0E0541AAEA716303D352682F /* ContentView.swift */,
+				B515FDB33927B6893F0B141E /* DownloadView.swift */,
+				645AA94BE2E242CEB7C70FE5 /* SettingsView.swift */,
+				2A2EDEA5774BAA0B108A31DD /* ShareSheet.swift */,
+				FF8CE43AB45D8E92860BA41D /* TranscriptionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CF381751C9233A6876F1FE8D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				951F8B224EB42B70F2357B32 /* Assets.xcassets */,
+				9C7AF0B7F1ABBDB83BA2CCF0 /* LaunchScreen.storyboard */,
+				EE749AC1495DF6E0FF4D1C57 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1728B05B5BCF646E795ADEC6 /* jusstalk */ = {
+		122EA2DF1FC507BCBEEC062C /* Jusstalk */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9DC193E75B0FD21DA8793EEE /* Build configuration list for PBXNativeTarget "jusstalk" */;
+			buildConfigurationList = 9DF4645525A8BC33CF4D96A9 /* Build configuration list for PBXNativeTarget "Jusstalk" */;
 			buildPhases = (
-				A58A5664C1AF4F59C2B0547A /* Sources */,
-				FDF57FF01CAA9635B3D559F7 /* Resources */,
+				D7580A1F551B8A2BC9AC8D75 /* Sources */,
+				53C042A931C125AB8BA94719 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = jusstalk;
+			name = Jusstalk;
 			packageProductDependencies = (
 			);
-			productName = jusstalk;
-			productReference = 69628548593AE2490CE7024B /* jusstalk.app */;
+			productName = Jusstalk;
+			productReference = 51706EBD964F2AFD623E8F8D /* Jusstalk.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F0AC5BE06B8147D593114A6F /* Project object */ = {
+		C098B5840F97C5F99858EF5F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					1728B05B5BCF646E795ADEC6 = {
+					122EA2DF1FC507BCBEEC062C = {
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 7354EF0C79F923087179C3D3 /* Build configuration list for PBXProject "jusstalk" */;
+			buildConfigurationList = B83B73E21D5E1C91E6F013DA /* Build configuration list for PBXProject "Jusstalk" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -187,62 +189,63 @@
 				Base,
 				en,
 			);
-			mainGroup = AFCF34946C7D5FD476EA9C8F;
+			mainGroup = 8EC129B9D0C1422446083556;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1728B05B5BCF646E795ADEC6 /* jusstalk */,
+				122EA2DF1FC507BCBEEC062C /* Jusstalk */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		FDF57FF01CAA9635B3D559F7 /* Resources */ = {
+		53C042A931C125AB8BA94719 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F60C415C18C2C67379CE5F4 /* Assets.xcassets in Resources */,
-				917C5F15696D0EB325076677 /* LaunchScreen.storyboard in Resources */,
+				8F84BDFA636618C41F84F542 /* Assets.xcassets in Resources */,
+				45DC2168F42BDE386B69911B /* LaunchScreen.storyboard in Resources */,
+				F46D656A34577B0F32C668B3 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A58A5664C1AF4F59C2B0547A /* Sources */ = {
+		D7580A1F551B8A2BC9AC8D75 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E0877F6326A43F7A1BC0CEF /* AudioService.swift in Sources */,
-				59073FDA92EC33A795C596CC /* Config.swift in Sources */,
-				61CCB42E24269DBB3D62EE8B /* ContentView.swift in Sources */,
-				37F275E46D0625CFBA7334CE /* DownloadView.swift in Sources */,
-				333258B096C82658632A49B5 /* ExportService.swift in Sources */,
-				C54B7B6E08039E83AB6DEF30 /* JusstalkApp.swift in Sources */,
-				605955EFA2301077DAC1B6B9 /* KeychainManager.swift in Sources */,
-				26D5EFA602E4A6704AC3158D /* LastRecordingManager.swift in Sources */,
-				04C1BF3449046F916A93963E /* LegalContent.swift in Sources */,
-				BDE9488F3CC35351273924B2 /* Models.swift in Sources */,
-				08D994C08E381E4C12E93E0A /* RecordingViewModel.swift in Sources */,
-				9C77C37E371A339803F8C4CE /* SettingsView.swift in Sources */,
-				5240902DBD1FA56852168296 /* ShareSheet.swift in Sources */,
-				A0E7B9A9E57EA231DBCA47EC /* TextProcessingService.swift in Sources */,
-				F5A3F5934D98F76191AC04A6 /* TranscriptionService.swift in Sources */,
-				7B160C24AE1F49B215AE119F /* TranscriptionView.swift in Sources */,
-				E27DAB727DE912786673B6B5 /* TranscriptionViewModel.swift in Sources */,
+				E608E28D7EBB241287277D4C /* AudioService.swift in Sources */,
+				382A242CABE9DE4AC40077FA /* Config.swift in Sources */,
+				2F3DADAB0FEF629813BE3C1D /* ContentView.swift in Sources */,
+				FE22A4F27168F31C5E54C525 /* DownloadView.swift in Sources */,
+				87E0A749320A50F1F93E0F10 /* ExportService.swift in Sources */,
+				22B3545B453B474E8408F540 /* JusstalkApp.swift in Sources */,
+				171E6670ED15A27F20413746 /* KeychainManager.swift in Sources */,
+				37670B9CE72FD4E774916139 /* LastRecordingManager.swift in Sources */,
+				74B5FACF3E5F11EBE48D5E66 /* LegalContent.swift in Sources */,
+				795E08102CD3C3231D077F05 /* Models.swift in Sources */,
+				67E15F7409ED52FEB4D2958D /* RecordingViewModel.swift in Sources */,
+				A054B8D06DEC1CF1D92A353F /* SettingsView.swift in Sources */,
+				FC30B9A6C56A47B45E5AF11D /* ShareSheet.swift in Sources */,
+				152363866DC5E3FD5DBC44FC /* TextProcessingService.swift in Sources */,
+				D3F67679DC7E9331BDDD9F81 /* TranscriptionService.swift in Sources */,
+				CA4FEA639A455B13EE4C5026 /* TranscriptionView.swift in Sources */,
+				C28F988C512EB4EF5272D6C2 /* TranscriptionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		1F1C7C291A77817F2F328E98 /* Debug */ = {
+		0D66D0B5A14B99F0AC129CE2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = M467H6N2WC;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -253,9 +256,9 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Debug;
+			name = Release;
 		};
-		5344983F49ECD717B5F439B5 /* Debug */ = {
+		77C93635C4FA5108E9216678 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -323,12 +326,11 @@
 			};
 			name = Debug;
 		};
-		5C98E635E9C851A0D25B425D /* Release */ = {
+		8580EEB0F8E33B69EAF01DCD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = M467H6N2WC;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -339,9 +341,9 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = Debug;
 		};
-		C825106AA748EF3B7B4A4266 /* Release */ = {
+		DB9C72616827300361AE591F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -405,25 +407,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7354EF0C79F923087179C3D3 /* Build configuration list for PBXProject "jusstalk" */ = {
+		9DF4645525A8BC33CF4D96A9 /* Build configuration list for PBXNativeTarget "Jusstalk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5344983F49ECD717B5F439B5 /* Debug */,
-				C825106AA748EF3B7B4A4266 /* Release */,
+				8580EEB0F8E33B69EAF01DCD /* Debug */,
+				0D66D0B5A14B99F0AC129CE2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		9DC193E75B0FD21DA8793EEE /* Build configuration list for PBXNativeTarget "jusstalk" */ = {
+		B83B73E21D5E1C91E6F013DA /* Build configuration list for PBXProject "Jusstalk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1F1C7C291A77817F2F328E98 /* Debug */,
-				5C98E635E9C851A0D25B425D /* Release */,
+				77C93635C4FA5108E9216678 /* Debug */,
+				DB9C72616827300361AE591F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = F0AC5BE06B8147D593114A6F /* Project object */;
+	rootObject = C098B5840F97C5F99858EF5F /* Project object */;
 }

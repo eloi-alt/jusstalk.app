@@ -1,4 +1,4 @@
-name: jusstalk
+name: Jusstalk
 options:
   bundleIdPrefix: com.jusstalk
   deploymentTarget:
@@ -16,7 +16,7 @@ settings:
     DEVELOPMENT_TEAM: ""
 
 targets:
-  jusstalk:
+  Jusstalk:
     type: application
     platform: iOS
     sources:
@@ -24,6 +24,8 @@ targets:
         type: group
       - path: Resources
         type: group
+        excludes:
+          - Info.plist
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.jusstalk.app
@@ -48,7 +50,7 @@ targets:
         CFBundleShortVersionString: "1.0.0"
         CFBundleVersion: "1"
         CFBundleIdentifier: com.jusstalk.app
-        NSMicrophoneUsageDescription: jusstalk needs microphone access to record audio for transcription.
+        NSMicrophoneUsageDescription: Jusstalk needs microphone access to record audio for transcription.
         UILaunchScreen:
           UIColorName: ""
         UILaunchStoryboardName: LaunchScreen
@@ -63,10 +65,10 @@ targets:
           - UIInterfaceOrientationLandscapeRight
 
 schemes:
-  jusstalk:
+  Jusstalk:
     build:
       targets:
-        jusstalk: all
+        Jusstalk: all
     run:
       config: Debug
     archive:
