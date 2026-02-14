@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct VoiceScriptApp: App {
+struct JusstalkApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

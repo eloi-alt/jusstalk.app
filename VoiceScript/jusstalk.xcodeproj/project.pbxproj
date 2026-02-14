@@ -10,17 +10,20 @@
 		04C1BF3449046F916A93963E /* LegalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6352C6CA937ECF8EF61ABBF1 /* LegalContent.swift */; };
 		08D994C08E381E4C12E93E0A /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D6ACC16F616DC0EF8879E2 /* RecordingViewModel.swift */; };
 		1F60C415C18C2C67379CE5F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE67585F94275DF4AB547A70 /* Assets.xcassets */; };
-		27390A5A0DA9FB36F7BE943E /* VoiceScriptApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC738D0F4196E36075543D6 /* VoiceScriptApp.swift */; };
+		26D5EFA602E4A6704AC3158D /* LastRecordingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF3F6A4B88488DEFC9E1128 /* LastRecordingManager.swift */; };
 		2E0877F6326A43F7A1BC0CEF /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5DF459225DA1ECD2D6EE36 /* AudioService.swift */; };
 		333258B096C82658632A49B5 /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B43522D9DF6ABAE884D28A7 /* ExportService.swift */; };
 		37F275E46D0625CFBA7334CE /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBD653037B1E508952E254D /* DownloadView.swift */; };
+		5240902DBD1FA56852168296 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5F9BC3F60C2E5F00AF020A /* ShareSheet.swift */; };
 		59073FDA92EC33A795C596CC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8A5359E6F4DBF9FA8F53B9 /* Config.swift */; };
 		605955EFA2301077DAC1B6B9 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3AA954C3A37F5B951C2534 /* KeychainManager.swift */; };
 		61CCB42E24269DBB3D62EE8B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36238F54037D99870D7EBF72 /* ContentView.swift */; };
 		7B160C24AE1F49B215AE119F /* TranscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B5892C3C85A080D7A4BA3 /* TranscriptionView.swift */; };
 		917C5F15696D0EB325076677 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E353D191F0D2887730F5C111 /* LaunchScreen.storyboard */; };
 		9C77C37E371A339803F8C4CE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9232D3F25F7F37A54C369052 /* SettingsView.swift */; };
+		A0E7B9A9E57EA231DBCA47EC /* TextProcessingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4241A227CD7313387576DD /* TextProcessingService.swift */; };
 		BDE9488F3CC35351273924B2 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAAD3CCF07EE48E29011B66 /* Models.swift */; };
+		C54B7B6E08039E83AB6DEF30 /* JusstalkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8A8838D0D1181CFE6A44DD /* JusstalkApp.swift */; };
 		E27DAB727DE912786673B6B5 /* TranscriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C70DC4F77CC2425440BD60A /* TranscriptionViewModel.swift */; };
 		F5A3F5934D98F76191AC04A6 /* TranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47BC3D408A3A6E0D14D6B8F /* TranscriptionService.swift */; };
 /* End PBXBuildFile section */
@@ -29,20 +32,23 @@
 		287ED0C0BDF2DF2B2FD6CEB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		36238F54037D99870D7EBF72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4C3B5892C3C85A080D7A4BA3 /* TranscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionView.swift; sourceTree = "<group>"; };
+		5CF3F6A4B88488DEFC9E1128 /* LastRecordingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastRecordingManager.swift; sourceTree = "<group>"; };
 		6352C6CA937ECF8EF61ABBF1 /* LegalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalContent.swift; sourceTree = "<group>"; };
 		69628548593AE2490CE7024B /* jusstalk.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = jusstalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B43522D9DF6ABAE884D28A7 /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
 		6C5DF459225DA1ECD2D6EE36 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
 		7C70DC4F77CC2425440BD60A /* TranscriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionViewModel.swift; sourceTree = "<group>"; };
 		7DBD653037B1E508952E254D /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
+		8B5F9BC3F60C2E5F00AF020A /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		9232D3F25F7F37A54C369052 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9E8A8838D0D1181CFE6A44DD /* JusstalkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JusstalkApp.swift; sourceTree = "<group>"; };
 		AE67585F94275DF4AB547A70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B47BC3D408A3A6E0D14D6B8F /* TranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionService.swift; sourceTree = "<group>"; };
 		C3D6ACC16F616DC0EF8879E2 /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
 		CA8A5359E6F4DBF9FA8F53B9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		CEC738D0F4196E36075543D6 /* VoiceScriptApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceScriptApp.swift; sourceTree = "<group>"; };
 		DFAAD3CCF07EE48E29011B66 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		E353D191F0D2887730F5C111 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ED4241A227CD7313387576DD /* TextProcessingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextProcessingService.swift; sourceTree = "<group>"; };
 		EF3AA954C3A37F5B951C2534 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,6 +58,7 @@
 			children = (
 				6C5DF459225DA1ECD2D6EE36 /* AudioService.swift */,
 				6B43522D9DF6ABAE884D28A7 /* ExportService.swift */,
+				ED4241A227CD7313387576DD /* TextProcessingService.swift */,
 				B47BC3D408A3A6E0D14D6B8F /* TranscriptionService.swift */,
 			);
 			path = Services;
@@ -73,6 +80,7 @@
 				36238F54037D99870D7EBF72 /* ContentView.swift */,
 				7DBD653037B1E508952E254D /* DownloadView.swift */,
 				9232D3F25F7F37A54C369052 /* SettingsView.swift */,
+				8B5F9BC3F60C2E5F00AF020A /* ShareSheet.swift */,
 				4C3B5892C3C85A080D7A4BA3 /* TranscriptionView.swift */,
 			);
 			path = Views;
@@ -89,7 +97,7 @@
 		9C89140E0F5BC008A3B725D4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				CEC738D0F4196E36075543D6 /* VoiceScriptApp.swift */,
+				9E8A8838D0D1181CFE6A44DD /* JusstalkApp.swift */,
 				BE006F8D311FAD7BDCD65985 /* Models */,
 				2D9E299F12782EB709A3167B /* Services */,
 				D4A56BCA08F43F7C7D11DE01 /* Utilities */,
@@ -121,6 +129,7 @@
 			children = (
 				CA8A5359E6F4DBF9FA8F53B9 /* Config.swift */,
 				EF3AA954C3A37F5B951C2534 /* KeychainManager.swift */,
+				5CF3F6A4B88488DEFC9E1128 /* LastRecordingManager.swift */,
 				6352C6CA937ECF8EF61ABBF1 /* LegalContent.swift */,
 			);
 			path = Utilities;
@@ -166,6 +175,7 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					1728B05B5BCF646E795ADEC6 = {
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -211,15 +221,18 @@
 				61CCB42E24269DBB3D62EE8B /* ContentView.swift in Sources */,
 				37F275E46D0625CFBA7334CE /* DownloadView.swift in Sources */,
 				333258B096C82658632A49B5 /* ExportService.swift in Sources */,
+				C54B7B6E08039E83AB6DEF30 /* JusstalkApp.swift in Sources */,
 				605955EFA2301077DAC1B6B9 /* KeychainManager.swift in Sources */,
+				26D5EFA602E4A6704AC3158D /* LastRecordingManager.swift in Sources */,
 				04C1BF3449046F916A93963E /* LegalContent.swift in Sources */,
 				BDE9488F3CC35351273924B2 /* Models.swift in Sources */,
 				08D994C08E381E4C12E93E0A /* RecordingViewModel.swift in Sources */,
 				9C77C37E371A339803F8C4CE /* SettingsView.swift in Sources */,
+				5240902DBD1FA56852168296 /* ShareSheet.swift in Sources */,
+				A0E7B9A9E57EA231DBCA47EC /* TextProcessingService.swift in Sources */,
 				F5A3F5934D98F76191AC04A6 /* TranscriptionService.swift in Sources */,
 				7B160C24AE1F49B215AE119F /* TranscriptionView.swift in Sources */,
 				E27DAB727DE912786673B6B5 /* TranscriptionViewModel.swift in Sources */,
-				27390A5A0DA9FB36F7BE943E /* VoiceScriptApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +293,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -364,6 +378,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

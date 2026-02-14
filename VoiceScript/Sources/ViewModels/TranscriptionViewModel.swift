@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 @MainActor
 class TranscriptionViewModel: ObservableObject {
@@ -7,10 +8,13 @@ class TranscriptionViewModel: ObservableObject {
     @Published var isExporting = false
     @Published var showDownload = false
     @Published var exportedFileURL: URL?
+    @Published var isEditingMode = false
+    @Published var showCopiedAlert = false
 
     let transcription: Transcription
     let onComplete: () -> Void
     private let exportService = ExportService()
+    private let lastRecordingManager = LastRecordingManager.shared
 
     init(transcription: Transcription, onComplete: @escaping () -> Void) {
         self.transcription = transcription
@@ -29,10 +33,21 @@ class TranscriptionViewModel: ObservableObject {
         selectedFormat != nil
     }
 
+    func saveRecording() {
+        let saved = SavedRecording(
+            text: editedText,
+            date: transcription.dateCreated,
+            duration: transcription.duration
+        )
+        lastRecordingManager.save(saved)
+    }
+
     func exportTranscription() async {
         guard let format = selectedFormat else { return }
         
         isExporting = true
+        saveRecording()
+        
         do {
             let fileURL = try await exportService.export(text: editedText, format: format, metadata: ["date": transcription.dateCreated, "duration": transcription.duration])
             exportedFileURL = fileURL
@@ -41,5 +56,16 @@ class TranscriptionViewModel: ObservableObject {
             print("Export failed")
         }
         isExporting = false
+    }
+
+    func copyToClipboard() {
+        UIPasteboard.general.string = editedText
+        showCopiedAlert = true
+        saveRecording()
+    }
+
+    func shareText() -> String {
+        saveRecording()
+        return editedText
     }
 }
