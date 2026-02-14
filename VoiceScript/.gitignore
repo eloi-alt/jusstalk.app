@@ -1,0 +1,20 @@
+# Environment Variables
+.env
+*.env
+
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+*.xcuserdatad
+xcuserdata/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets (never commit)
+*secret*
+*api*
+*key*
+*.pem
