@@ -8,6 +8,7 @@ DerivedData/
 *.xcuserstate
 *.xcuserdatad
 xcuserdata/
+xcshareddata/xcschemes/
 
 # OS
 .DS_Store
@@ -18,3 +19,5 @@ Thumbs.db
 *api*
 *key*
 *.pem
+VoiceScript_Addon_Intelligent_Formatting.txt
+VoiceScript_Production_Blueprint.txt
