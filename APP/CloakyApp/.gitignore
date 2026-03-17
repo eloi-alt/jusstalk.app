@@ -1,0 +1,15 @@
+node_modules/
+.DS_Store
+*.xcuserstate
+xcuserdata/
+build/
+DerivedData/
+*.ipa
+*.app
+
+# Apple certificates
+*.cer
+*.p12
+*.pem
+*.key
+*.certSigningRequest

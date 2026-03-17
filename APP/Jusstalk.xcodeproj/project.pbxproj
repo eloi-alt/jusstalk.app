@@ -13,47 +13,77 @@
 		2F3DADAB0FEF629813BE3C1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0541AAEA716303D352682F /* ContentView.swift */; };
 		37670B9CE72FD4E774916139 /* LastRecordingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C4E97E04D787EEC73A421 /* LastRecordingManager.swift */; };
 		382A242CABE9DE4AC40077FA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE070C698722EEBD77E7472 /* Config.swift */; };
+		3E483DDAC1B0E3A814BB5E8B /* JusstalkAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098DC1F6AF9F84448191F068 /* JusstalkAppState.swift */; };
+		3EFC0982F157AA8C87FDA58F /* PremiumPositioningPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1D32C0D04AAB709E99E8F /* PremiumPositioningPageView.swift */; };
 		45DC2168F42BDE386B69911B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C7AF0B7F1ABBDB83BA2CCF0 /* LaunchScreen.storyboard */; };
+		5CB49D5BB988C966230C98A7 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783AABC8E21C6498DBA8A4F7 /* StoreManager.swift */; };
+		60CBF4B94D0FDDB3D9BB8BF2 /* DemoPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B324D328D92EDC91CD58E /* DemoPageView.swift */; };
 		67E15F7409ED52FEB4D2958D /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D491E7C5D730A3589CC487E9 /* RecordingViewModel.swift */; };
 		74B5FACF3E5F11EBE48D5E66 /* LegalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC022548A11E15975C5544D /* LegalContent.swift */; };
 		795E08102CD3C3231D077F05 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE5D746D37C4F9E1554C7B0 /* Models.swift */; };
 		87E0A749320A50F1F93E0F10 /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930FCF5AF8CAF1F2C59B64AC /* ExportService.swift */; };
+		8ABA3F8FA5C6485843FC6591 /* AnimatedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F095981BDB0EEE08823FE6 /* AnimatedBackground.swift */; };
 		8F84BDFA636618C41F84F542 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951F8B224EB42B70F2357B32 /* Assets.xcassets */; };
 		A054B8D06DEC1CF1D92A353F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645AA94BE2E242CEB7C70FE5 /* SettingsView.swift */; };
+		AB45CE732EFA5311D0C05874 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB07B355FFA5394690EC699 /* PaywallView.swift */; };
 		C28F988C512EB4EF5272D6C2 /* TranscriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54186749D2D14625799AC8B7 /* TranscriptionViewModel.swift */; };
+		C6F801FABA35BCDE70349C1C /* CTAPageJusstalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA9DAC076AE84A8D5DF91AB /* CTAPageJusstalkView.swift */; };
 		CA4FEA639A455B13EE4C5026 /* TranscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8CE43AB45D8E92860BA41D /* TranscriptionView.swift */; };
+		CF61EABB6FDAB8DB9B29019B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70307F90BD351BB0CB52D2A7 /* RootView.swift */; };
 		D3F67679DC7E9331BDDD9F81 /* TranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69330308DE314883EA78B61C /* TranscriptionService.swift */; };
+		E5102CD2FDB8A2945D5FB778 /* OnboardingFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181ECA51B994DD73746DC253 /* OnboardingFlowView.swift */; };
+		E57AEC89EE67887EA57A2238 /* FreeMinutesTrialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27480361B060EC404AD5E46 /* FreeMinutesTrialManager.swift */; };
 		E608E28D7EBB241287277D4C /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DA736FFC5EE68E6E04E158 /* AudioService.swift */; };
 		F46D656A34577B0F32C668B3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = EE749AC1495DF6E0FF4D1C57 /* PrivacyInfo.xcprivacy */; };
+		F893CFC373B27F4AE3DB6C63 /* HeroPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA63FB535981C2F29104A4F7 /* HeroPageView.swift */; };
 		FC30B9A6C56A47B45E5AF11D /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2EDEA5774BAA0B108A31DD /* ShareSheet.swift */; };
 		FE22A4F27168F31C5E54C525 /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B515FDB33927B6893F0B141E /* DownloadView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		098DC1F6AF9F84448191F068 /* JusstalkAppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JusstalkAppState.swift; sourceTree = "<group>"; };
 		0A2C4E97E04D787EEC73A421 /* LastRecordingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastRecordingManager.swift; sourceTree = "<group>"; };
 		0E0541AAEA716303D352682F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		181ECA51B994DD73746DC253 /* OnboardingFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowView.swift; sourceTree = "<group>"; };
 		1EE5D746D37C4F9E1554C7B0 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		2A2EDEA5774BAA0B108A31DD /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		32F095981BDB0EEE08823FE6 /* AnimatedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedBackground.swift; sourceTree = "<group>"; };
+		4CE1D32C0D04AAB709E99E8F /* PremiumPositioningPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPositioningPageView.swift; sourceTree = "<group>"; };
 		51706EBD964F2AFD623E8F8D /* Jusstalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jusstalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54186749D2D14625799AC8B7 /* TranscriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionViewModel.swift; sourceTree = "<group>"; };
 		55DA736FFC5EE68E6E04E158 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		5DA9DAC076AE84A8D5DF91AB /* CTAPageJusstalkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAPageJusstalkView.swift; sourceTree = "<group>"; };
 		645AA94BE2E242CEB7C70FE5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		69330308DE314883EA78B61C /* TranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionService.swift; sourceTree = "<group>"; };
 		6EC022548A11E15975C5544D /* LegalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalContent.swift; sourceTree = "<group>"; };
+		70307F90BD351BB0CB52D2A7 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		783AABC8E21C6498DBA8A4F7 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		8958BC3E43023AE562C4229F /* TextProcessingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextProcessingService.swift; sourceTree = "<group>"; };
 		8D7AAD9C273FF7F5D754727E /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		930FCF5AF8CAF1F2C59B64AC /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
 		951F8B224EB42B70F2357B32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C7AF0B7F1ABBDB83BA2CCF0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B515FDB33927B6893F0B141E /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
+		CA63FB535981C2F29104A4F7 /* HeroPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroPageView.swift; sourceTree = "<group>"; };
+		D48B324D328D92EDC91CD58E /* DemoPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoPageView.swift; sourceTree = "<group>"; };
 		D491E7C5D730A3589CC487E9 /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
+		DAB07B355FFA5394690EC699 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		E2CBA00637E69211E86990F3 /* JusstalkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JusstalkApp.swift; sourceTree = "<group>"; };
 		EDE070C698722EEBD77E7472 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		EE749AC1495DF6E0FF4D1C57 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		F27480361B060EC404AD5E46 /* FreeMinutesTrialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeMinutesTrialManager.swift; sourceTree = "<group>"; };
 		FF8CE43AB45D8E92860BA41D /* TranscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		0372CE75C072D33D5CA07AF1 /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+				DAB07B355FFA5394690EC699 /* PaywallView.swift */,
+			);
+			path = Paywall;
+			sourceTree = "<group>";
+		};
 		054D8FEC6D294F423AF0631E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +98,7 @@
 		0D1DF70AFA4092D620553E1B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				098DC1F6AF9F84448191F068 /* JusstalkAppState.swift */,
 				1EE5D746D37C4F9E1554C7B0 /* Models.swift */,
 			);
 			path = Models;
@@ -78,10 +109,25 @@
 			children = (
 				55DA736FFC5EE68E6E04E158 /* AudioService.swift */,
 				930FCF5AF8CAF1F2C59B64AC /* ExportService.swift */,
+				F27480361B060EC404AD5E46 /* FreeMinutesTrialManager.swift */,
+				783AABC8E21C6498DBA8A4F7 /* StoreManager.swift */,
 				8958BC3E43023AE562C4229F /* TextProcessingService.swift */,
 				69330308DE314883EA78B61C /* TranscriptionService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		5F2F2720B9904C4BA7DEF65A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				32F095981BDB0EEE08823FE6 /* AnimatedBackground.swift */,
+				5DA9DAC076AE84A8D5DF91AB /* CTAPageJusstalkView.swift */,
+				D48B324D328D92EDC91CD58E /* DemoPageView.swift */,
+				CA63FB535981C2F29104A4F7 /* HeroPageView.swift */,
+				181ECA51B994DD73746DC253 /* OnboardingFlowView.swift */,
+				4CE1D32C0D04AAB709E99E8F /* PremiumPositioningPageView.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		8EC129B9D0C1422446083556 = {
@@ -128,9 +174,12 @@
 			children = (
 				0E0541AAEA716303D352682F /* ContentView.swift */,
 				B515FDB33927B6893F0B141E /* DownloadView.swift */,
+				70307F90BD351BB0CB52D2A7 /* RootView.swift */,
 				645AA94BE2E242CEB7C70FE5 /* SettingsView.swift */,
 				2A2EDEA5774BAA0B108A31DD /* ShareSheet.swift */,
 				FF8CE43AB45D8E92860BA41D /* TranscriptionView.swift */,
+				5F2F2720B9904C4BA7DEF65A /* Onboarding */,
+				0372CE75C072D33D5CA07AF1 /* Paywall */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -216,19 +265,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ABA3F8FA5C6485843FC6591 /* AnimatedBackground.swift in Sources */,
 				E608E28D7EBB241287277D4C /* AudioService.swift in Sources */,
+				C6F801FABA35BCDE70349C1C /* CTAPageJusstalkView.swift in Sources */,
 				382A242CABE9DE4AC40077FA /* Config.swift in Sources */,
 				2F3DADAB0FEF629813BE3C1D /* ContentView.swift in Sources */,
+				60CBF4B94D0FDDB3D9BB8BF2 /* DemoPageView.swift in Sources */,
 				FE22A4F27168F31C5E54C525 /* DownloadView.swift in Sources */,
 				87E0A749320A50F1F93E0F10 /* ExportService.swift in Sources */,
+				E57AEC89EE67887EA57A2238 /* FreeMinutesTrialManager.swift in Sources */,
+				F893CFC373B27F4AE3DB6C63 /* HeroPageView.swift in Sources */,
 				22B3545B453B474E8408F540 /* JusstalkApp.swift in Sources */,
+				3E483DDAC1B0E3A814BB5E8B /* JusstalkAppState.swift in Sources */,
 				171E6670ED15A27F20413746 /* KeychainManager.swift in Sources */,
 				37670B9CE72FD4E774916139 /* LastRecordingManager.swift in Sources */,
 				74B5FACF3E5F11EBE48D5E66 /* LegalContent.swift in Sources */,
 				795E08102CD3C3231D077F05 /* Models.swift in Sources */,
+				E5102CD2FDB8A2945D5FB778 /* OnboardingFlowView.swift in Sources */,
+				AB45CE732EFA5311D0C05874 /* PaywallView.swift in Sources */,
+				3EFC0982F157AA8C87FDA58F /* PremiumPositioningPageView.swift in Sources */,
 				67E15F7409ED52FEB4D2958D /* RecordingViewModel.swift in Sources */,
+				CF61EABB6FDAB8DB9B29019B /* RootView.swift in Sources */,
 				A054B8D06DEC1CF1D92A353F /* SettingsView.swift in Sources */,
 				FC30B9A6C56A47B45E5AF11D /* ShareSheet.swift in Sources */,
+				5CB49D5BB988C966230C98A7 /* StoreManager.swift in Sources */,
 				152363866DC5E3FD5DBC44FC /* TextProcessingService.swift in Sources */,
 				D3F67679DC7E9331BDDD9F81 /* TranscriptionService.swift in Sources */,
 				CA4FEA639A455B13EE4C5026 /* TranscriptionView.swift in Sources */,

@@ -1,7 +1,13 @@
+// ContentView.swift
+// Jusstalk
+//
+// Main content view with recording functionality and paywall integration.
+
 import SwiftUI
 import UIKit
 
 struct ContentView: View {
+    @EnvironmentObject private var storeManager: StoreManager
     @StateObject private var recordingVM = RecordingViewModel()
     @State private var showSettings = false
     @State private var showTranscription = false
@@ -28,6 +34,8 @@ struct ContentView: View {
                     recordingButton
 
                     statusSection
+                    
+                    trialIndicator
                 }
             }
             .sheet(isPresented: $showSettings) { SettingsView() }
@@ -50,7 +58,16 @@ struct ContentView: View {
                     }
                 }
             }
+            .sheet(isPresented: $recordingVM.shouldShowPaywall) {
+                PaywallView(onPurchaseComplete: {
+                    recordingVM.shouldShowPaywall = false
+                })
+                .environmentObject(storeManager)
+            }
             .onChange(of: recordingVM.transcriptionComplete) { if $0 { showTranscription = true } }
+            .onAppear {
+                recordingVM.configure(storeManager: storeManager)
+            }
         }
     }
 
@@ -137,7 +154,22 @@ struct ContentView: View {
                 Text(error).font(.system(size: 14)).foregroundColor(.red)
             }
         }
-        .padding(.bottom, 40)
+        .padding(.bottom, 16)
+    }
+    
+    private var trialIndicator: some View {
+        Group {
+            if !storeManager.isPremium {
+                HStack(spacing: 6) {
+                    Image(systemName: "clock")
+                        .font(.system(size: 12))
+                    Text("\(recordingVM.remainingTrialTranscriptions) transcription\(recordingVM.remainingTrialTranscriptions == 1 ? "" : "s") gratuite\(recordingVM.remainingTrialTranscriptions == 1 ? "" : "s") restante\(recordingVM.remainingTrialTranscriptions == 1 ? "" : "s")")
+                        .font(.system(size: 13))
+                }
+                .foregroundColor(.secondary)
+                .padding(.bottom, 24)
+            }
+        }
     }
 
     private func previewText(_ text: String) -> String {

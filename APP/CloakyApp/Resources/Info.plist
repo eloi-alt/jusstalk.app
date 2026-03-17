@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Cloakyy</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>Cloakyy uses your camera to take photos so it can automatically detect and blur faces directly on your device, protecting the identity of people in your images before you share them. No photos or data are sent to any server — all processing happens entirely on your device.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Cloakyy needs permission to save photos to your library so that processed images — with faces detected and blurred — can be stored directly in your Photo Library. This allows you to easily access and share your anonymized photos. No data leaves your device.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Cloakyy needs access to your Photo Library so you can select existing photos for face detection and blurring. The app analyzes your photos on-device using Apple's Vision framework to identify faces, then applies blur effects to protect people's identities. Your photos are never uploaded or shared — all processing is performed locally on your device.</string>
+	<key>UILaunchScreen</key>
+	<dict/>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+</dict>
+</plist>

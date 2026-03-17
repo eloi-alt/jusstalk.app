@@ -1,0 +1,527 @@
+================================================================================
+CLOAKY — PREMIUM ONBOARDING REDESIGN
+Prompt pour OpenCode / Claude Code
+Projet : eloi-alt/cloaky.app (Swift / SwiftUI / iOS)
+================================================================================
+
+## CONTEXTE PROJET
+
+Tu travailles sur l'application iOS "Cloakyy" — une app de protection de la vie
+privée qui détecte et floute automatiquement visages, mains, et textes sensibles
+dans les photos. 100% offline, tout se passe sur l'appareil.
+
+Structure existante pertinente :
+  - CloakyApp/App/AppState.swift          → état global de l'app
+  - CloakyApp/App/StoreManager.swift      → StoreKit 2, achat non-consommable
+  - CloakyApp/App/RootView.swift          → vue racine qui route vers onboarding/app
+  - CloakyApp/UI/Screens/Onboarding/OnboardingFlowView.swift → FICHIER PRINCIPAL À RÉÉCRIRE
+  - CloakyApp/UI/Screens/Onboarding/PaywallView.swift        → FICHIER À RÉÉCRIRE
+  - CloakyApp/UI/Screens/Onboarding/AnimatedBackground.swift → conserver tel quel
+  - CloakyApp/StoreKitConfig.storekit     → produit "com.claokyy.unlock_pro" NonConsumable
+
+Modèle économique actuel :
+  - L'app offre 3 photos gratuites (trial de 3 traitements)
+  - Après 3 photos : paywall déclenché
+  - Paiement unique (non-consommable) de 9,99€ — PAS d'abonnement
+  - Le compteur de photos est probablement dans AppState ou UserDefaults
+    → tu devras vérifier le fichier exact et adapter en conséquence
+
+--------------------------------------------------------------------------------
+## OBJECTIF PRINCIPAL
+
+Réécrire complètement l'expérience d'onboarding pour la rendre ultra-premium,
+cinématique, et convaincante. L'objectif est de maximiser la conversion vers
+le paiement unique à 9,99€.
+
+Les 6 éléments suivants DOIVENT être implémentés :
+
+  1. Vidéo full-screen hero en première slide
+  2. UX "Try Before You Buy" — accès direct sans barrière
+  3. Slides premium : 3 slides maximum avant action, visuels immersifs
+  4. Permission Priming contextuel (pas de demande abrupte)
+  5. Paywall post-utilisation (déclenché après 3 photos, pas à l'ouverture)
+  6. Micro-interactions premium (haptics, spring animations, transitions blur)
+  7. Copy premium, design glassmorphisme, dark mode natif
+
+--------------------------------------------------------------------------------
+## PARTIE 1 — OnboardingFlowView.swift (RÉÉCRITURE COMPLÈTE)
+
+### 1.1 — Structure générale
+
+Remplacer le TabView basique par un ZStack + GeometryReader avec transitions
+personnalisées. Le flow comporte exactement 4 "pages" :
+
+  Page 0 → HERO (vidéo full-screen ou fallback animé)
+  Page 1 → DÉMO (valeur produit + animation interactive)
+  Page 2 → TRUST (privacy, offline, pas de serveur)
+  Page 3 → CTA (call-to-action : essayer gratuitement)
+
+La navigation entre pages se fait :
+  - Par swipe vertical (DragGesture) ou horizontal NATIF
+  - ET par bouton CTA en bas
+  - Pas de bouton "Next" visible sur les 3 premières pages — juste un CTA discret
+  - Page indicator : 4 capsules minimalistes (width: 20 si actif, 6 sinon),
+    hauteur 4pt, couleur white avec opacity 0.3/1.0, animation spring
+
+### 1.2 — Page 0 : Hero Vidéo Full-Screen
+
+IMPORTANT : L'app possède déjà un dossier CloakyApp/video/ — si un fichier vidéo
+.mp4 ou .mov existe dans ce dossier, l'utiliser. Sinon, créer un PlayerView basé
+sur AVKit/AVFoundation avec le nom de fichier "hero_demo.mp4" (à ajouter manuellement).
+
+Implémentation technique de la vidéo :
+
+```swift
+import AVKit
+import AVFoundation
+
+struct HeroVideoView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .black
+
+        guard let url = Bundle.main.url(forResource: "hero_demo", withExtension: "mp4") else {
+            return view // fallback silencieux si la vidéo n'existe pas
+        }
+
+        let player = AVPlayer(url: url)
+        player.isMuted = true
+        player.actionAtItemEnd = .none
+
+        // Loop infinie
+        NotificationCenter.default.addObserver(
+            forName: .AVPlayerItemDidPlayToEndTime,
+            object: player.currentItem,
+            queue: .main
+        ) { _ in player.seek(to: .zero); player.play() }
+
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.videoGravity = .resizeAspectFill
+        playerLayer.frame = UIScreen.main.bounds
+        view.layer.addSublayer(playerLayer)
+
+        player.play()
+
+        // Stocker player pour le cleanup
+        context.coordinator.player = player
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {
+        if let playerLayer = uiView.layer.sublayers?.first as? AVPlayerLayer {
+            playerLayer.frame = uiView.bounds
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator()
+    }
+
+    class Coordinator {
+        var player: AVPlayer?
+        deinit { player?.pause() }
+    }
+}
+```
+
+Si la vidéo n'existe pas (URL nil), afficher à la place un AnimatedBackground()
+enrichi avec une animation de particules/orbes. Ne pas afficher d'erreur.
+
+Overlay sur la vidéo :
+  - Gradient vertical en bas : black opacity 0 → 0.7 (height: 300pt)
+  - Logo AppLogo centré en haut (120x120, cornerRadius: 28, shadow indigo)
+  - En bas, avant le gradient : titre principal + sous-titre + CTA
+  - Logo animé avec .scaleEffect + opacity au chargement (spring, delay 0.3s)
+  - Titre animé avec .offset(y) + opacity (spring, delay 0.5s)
+
+Contenu textuel Page 0 :
+  - Titre    : "Tes photos.
+Zéro traces."
+  - Sous-titre : "Protection biométrique • 100% local • Zéro cloud"
+  - Badge "100% Offline" : capsule blanche avec opacity 0.15, texte blanc,
+    icône wifi.slash, positionné en haut à droite (padding: 16pt)
+
+CTA Page 0 :
+  - Bouton principal : "Essayer gratuitement — 3 photos"
+  - Style : fond blanc semi-transparent (ultraThinMaterial), texte noir, bold
+  - CornerRadius: 16, height: 56pt, full width avec padding horizontal 24pt
+  - Shadow: white opacity 0.15, radius 12
+  - Sous le bouton : Text("Puis 9,99€ une seule fois")
+    → font .caption, foreground white.opacity(0.6)
+  - Action : passer à la page 1 ET demander permission photo (voir 1.4)
+
+### 1.3 — Page 1 : Démo Visuelle Interactive
+
+Structure :
+  - Background : AnimatedBackground() (existant)
+  - En haut : titre section (font .title2 bold, white)
+    → "Vois ce que Cloakyy protège"
+
+Composant interactif central — BeforeAfterDemoView :
+  - Un ZStack avec deux "états" : avant (photo avec visages/textes exposés)
+    et après (photo protégée avec zones floutées/pixelisées)
+  - Utiliser des SF Symbols : "person.crop.rectangle" et "person.crop.rectangle.badge.checkmark"
+    dans un HStack stylisé avec des cards glassmorphisme
+  - 3 cards horizontales représentant les 3 types de détection :
+      Card 1 : icon "face.dashed"         → "Visages"      → "Détectés & masqués"
+      Card 2 : icon "hand.raised"         → "Mains"        → "Identité protégée"
+      Card 3 : icon "textformat.size"     → "Textes"       → "Plaques, emails..."
+  - Chaque card : RoundedRectangle cornerRadius 16, fill ultraThinMaterial,
+    border white opacity 0.2, shadow black opacity 0.3 radius 8
+  - Animation d'entrée séquentielle : chaque card apparaît avec delay 0.1s × index
+    (.opacity + .offset(y: 20) → 0 en spring)
+  - Tap sur une card : haptic .light + scale 0.97 puis retour (spring)
+
+Sous les cards :
+  - Bandeau "Suppression automatique des métadonnées" avec icon "info.circle"
+    style : fond white opacity 0.08, cornerRadius 12, padding 12
+  - Texte secondaire : "GPS · Date · Modèle de l'appareil · EXIF complet"
+    font .caption, white opacity 0.6
+
+CTA Page 1 :
+  - Bouton "Continuer" → passe à Page 2
+  - Style : LinearGradient indigo → purple, cornerRadius 14, height 52
+
+### 1.4 — Page 2 : Trust & Privacy
+
+Objectif : rassurer complètement l'utilisateur sur la privacy
+
+Structure :
+  - Titre : "Zéro connexion.
+Zéro risque."
+  - Icône centrale : shield.lefthalf.filled, font size 64, foreground indigo,
+    animation de "pulse" (scaleEffect 1.0 → 1.05 → 1.0, durée 2s, repeat forever)
+
+3 Trust Rows avec icon + titre + description :
+  Row 1 : icon "iphone"          → "Tout reste sur ton iPhone"
+           description: "Aucune donnée ne quitte ton appareil. Jamais."
+  Row 2 : icon "wifi.slash"      → "Fonctionne en mode avion"
+           description: "Pas de serveur, pas de cloud, pas de tiers."
+  Row 3 : icon "lock.shield"     → "Frameworks Apple uniquement"
+           description: "Vision, Core Image — aucune lib externe."
+
+Style des rows :
+  - HStack avec icon (indigo, size 24), VStack (titre white bold, description white opacity 0.7)
+  - Séparateur ultra-fin (Divider opacity 0.15) entre chaque row
+  - Animation d'entrée : chaque row slide depuis la gauche avec delay 0.15s × index
+
+Badge de confiance en bas :
+  - HStack : "Construit avec 🛡️ par un développeur indépendant"
+  - Style : capsule, fond white opacity 0.07, texte white opacity 0.5, caption
+
+CTA Page 2 :
+  - Bouton "Je comprends, on y va" → passe à Page 3 (CTA final)
+
+### 1.5 — Page 3 : CTA Final "Try Before Buy"
+
+Objectif : envoyer l'utilisateur directement dans l'app pour vivre l'expérience
+
+Structure :
+  - Titre : "Ta vie privée.
+Ton contrôle."
+  - Sous-titre : "Essaie avec 3 photos gratuitement."
+
+Compteur animé de photos restantes :
+  - Afficher : [3 cercles] chacun représentant une photo disponible
+  - Cercle : diamètre 44, border white opacity 0.4, intérieur transparent
+  - Icon "photo" dedans, white opacity 0.6
+  - Label sous les cercles : "3 photos offertes"
+
+Bouton CTA Principal :
+  - Label : "Protéger ma première photo →"
+  - Style PREMIUM : fond white (pas gradient), texte black, weight .bold
+  - CornerRadius: 16, height: 58, shadow white opacity 0.2 radius 16
+  - Action : UIImpactFeedbackGenerator(.heavy).impactOccurred()
+              puis appeler onFinish() pour entrer dans l'app
+
+Lien secondaire discret :
+  - Text("J'ai déjà acheté · Restaurer")
+  - font .caption, white opacity 0.4
+  - Tap : appeler storeManager.restorePurchases() et si success → onPurchaseComplete()
+
+Footer légal :
+  - Text("Paiement unique · 9,99€ · Pas d'abonnement · Accès à vie")
+  - font .caption2, white opacity 0.35, padding bottom 12
+
+--------------------------------------------------------------------------------
+## PARTIE 2 — PaywallView.swift (RÉÉCRITURE COMPLÈTE)
+
+Ce paywall est affiché UNIQUEMENT après que l'utilisateur a utilisé ses 3 photos
+gratuites. Il doit convertir un utilisateur qui a DÉJÀ vu la valeur du produit.
+
+### 2.1 — Trigger du Paywall
+
+Dans AppState.swift ou le fichier qui gère le compteur de photos (à identifier) :
+  - Ajouter (si pas déjà présent) : @Published var freePhotosUsed: Int = 0
+    avec persistance UserDefaults (key: "freePhotosUsed")
+  - Constante : let freePhotoLimit = 3
+  - Computed property : var hasReachedFreeLimit: Bool { freePhotosUsed >= freePhotoLimit }
+  - Incrémenter freePhotosUsed après chaque export réussi (dans le flow d'export,
+    trouver le bon endroit dans ProcessingPipeline ou l'EditorView)
+
+Dans RootView.swift (ou ContentView) :
+  - Observer appState.hasReachedFreeLimit
+  - Si true ET !storeManager.isPurchased : présenter PaywallView en .fullScreenCover
+    avec animation .move(edge: .bottom)
+  - NE PAS déclencher le paywall au lancement, seulement post-utilisation
+
+### 2.2 — Design du Paywall
+
+Background : AnimatedBackground() + overlay gradient noir en bas (height 400, opacity 0.6)
+
+Header (pas de logo, aller direct au but) :
+  - Badge animé en haut : "🎉 Tu viens de protéger ta 3ème photo !"
+    style : capsule, fond green opacity 0.2, border green opacity 0.5
+    animation : apparition avec spring depuis le haut (offset -40 → 0)
+  - Titre : "Continue à te protéger"
+  - Sous-titre : "Une fois payé, c'est pour toujours."
+
+Section prix — design PREMIUM :
+  - Card centrale unique (pas de choix multiples — un seul produit)
+  - RoundedRectangle cornerRadius 24, fond ultraThinMaterial
+  - Border : LinearGradient (white opacity 0.3 → indigo opacity 0.5), lineWidth 1.5
+  - Contenu de la card :
+      - En haut à droite : badge "ACCÈS À VIE" (capsule indigo, texte white bold .caption)
+      - Prix principal : "9,99€" — font .system(size: 52, weight: .black)
+        foreground : white
+      - Ligne sous le prix : "Paiement unique · Pas d'abonnement"
+        font .subheadline, white opacity 0.6
+      - Divider (white opacity 0.1)
+      - 5 features en liste compacte :
+          ✓ Photos illimitées
+          ✓ Filtres avancés (pixel, scramble, blur)
+          ✓ Mode batch
+          ✓ Export qualité maximale
+          ✓ Mises à jour à vie incluses
+        Style : icon checkmark.circle.fill (green), text white opacity 0.9, font .subheadline
+  - Shadow : indigo opacity 0.25, radius 24, y 12
+
+Bouton d'achat :
+  - Label : "Débloquer Cloakyy — 9,99€"
+  - Style : fond blanc PLEIN (#FFFFFF), texte noir (.black), weight .bold
+  - CornerRadius: 16, height: 58, full width
+  - Shadow : white opacity 0.2, radius 12
+  - Loading state : remplacer le texte par ProgressView tint .black
+  - Action : haptic .heavy + storeManager.purchase(product)
+  - Si isPurchasing : bouton désactivé + opacity 0.7
+
+Lien "Restaurer mes achats" :
+  - Discret, sous le bouton, font .caption, white opacity 0.5
+  - Tap : storeManager.restorePurchases()
+
+Footer légal obligatoire (Apple) :
+  - "Paiement sécurisé via Apple · Accès à vie sans abonnement"
+  - font .caption2, white opacity 0.3, multilineTextAlignment .center
+
+Dismiss/Skip :
+  - Bouton "✕" en haut à droite (ou en haut à gauche)
+  - Uniquement si l'utilisateur peut revenir plus tard (si la logique le permet)
+  - Si le paywall est présenté en .fullScreenCover, inclure un bouton dismiss discret
+    en haut : Image(systemName: "xmark") foreground white opacity 0.4, font .body
+    → dismiss() après confirmation UIImpactFeedbackGenerator(.light)
+
+### 2.3 — Animation d'achat réussi
+
+Quand storeManager.showSuccessAnimation == true :
+  - Overlay full-screen avec AnimatedBackground()
+  - Animation confettis (utiliser une UIKit confetti layer ou une animation Canvas SwiftUI)
+  - Icône checkmark.circle.fill, color green, font size 80, scale animation
+    0.3 → 1.2 → 1.0 avec spring
+  - Titre : "Bienvenue dans Cloakyy ✨"
+  - Sous-titre : "Toutes tes photos sont maintenant protégées."
+  - Bouton "C'est parti →" → appeler onPurchaseComplete()
+  - Auto-dismiss après 2.5 secondes si pas de tap
+
+--------------------------------------------------------------------------------
+## PARTIE 3 — StoreKitConfig.storekit (MISE À JOUR)
+
+Modifier le fichier StoreKitConfig.storekit pour :
+  - Changer le displayPrice de "4.99" à "9.99"
+  - Ajouter une localisation FR :
+    {
+      "description" : "Accès complet à Cloakyy, paiement unique, sans abonnement.",
+      "displayName" : "Cloakyy Pro — Accès à vie",
+      "locale" : "fr_FR"
+    }
+  - Conserver le type "NonConsumable" — c'est correct
+
+Dans StoreManager.swift :
+  - Mettre à jour displayName pour "com.claokyy.unlock_pro" :
+    return "Cloakyy Pro — Accès à vie"
+  - Pas d'autre modification nécessaire dans StoreManager
+
+--------------------------------------------------------------------------------
+## PARTIE 4 — MICRO-INTERACTIONS & HAPTICS (Transversal)
+
+Créer un fichier CloakyApp/Utilities/HapticManager.swift :
+
+```swift
+import UIKit
+
+struct HapticManager {
+    static func light()  { UIImpactFeedbackGenerator(style: .light).impactOccurred() }
+    static func medium() { UIImpactFeedbackGenerator(style: .medium).impactOccurred() }
+    static func heavy()  { UIImpactFeedbackGenerator(style: .heavy).impactOccurred() }
+    static func success() { UINotificationFeedbackGenerator().notificationOccurred(.success) }
+    static func error()   { UINotificationFeedbackGenerator().notificationOccurred(.error) }
+    static func selection() { UISelectionFeedbackGenerator().selectionChanged() }
+}
+```
+
+Utiliser HapticManager aux moments clés :
+  - Swipe entre pages onboarding → .selection()
+  - Tap sur une feature card → .light()
+  - Tap sur CTA principal → .heavy()
+  - Achat réussi → .success()
+  - Erreur d'achat → .error()
+  - Tap "Restaurer" → .medium()
+
+Créer un ViewModifier réutilisable PressEffect :
+```swift
+struct PressEffect: ViewModifier {
+    @State private var isPressed = false
+    func body(content: Content) -> some View {
+        content
+            .scaleEffect(isPressed ? 0.96 : 1.0)
+            .animation(.spring(response: 0.25, dampingFraction: 0.7), value: isPressed)
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { _ in isPressed = true }
+                    .onEnded { _ in isPressed = false }
+            )
+    }
+}
+
+extension View {
+    func pressEffect() -> some View { modifier(PressEffect()) }
+}
+```
+
+Appliquer .pressEffect() sur TOUS les boutons de l'onboarding et du paywall.
+
+--------------------------------------------------------------------------------
+## PARTIE 5 — PERMISSION PRIMING (Photo Library)
+
+Ne JAMAIS demander la permission photos au lancement de l'app ou pendant l'onboarding.
+La permission doit être demandée uniquement quand l'utilisateur tape sur
+"Protéger ma première photo →" (CTA final de l'onboarding).
+
+Créer CloakyApp/Utilities/PermissionManager.swift :
+
+```swift
+import Photos
+import SwiftUI
+
+@MainActor
+final class PermissionManager: ObservableObject {
+    @Published var photoAuthStatus: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+
+    func requestPhotoAccess() async -> Bool {
+        let status = await PHPhotoLibrary.requestAuthorization(for: .readWrite)
+        photoAuthStatus = status
+        return status == .authorized || status == .limited
+    }
+
+    var needsPhotoPermission: Bool {
+        photoAuthStatus == .notDetermined
+    }
+}
+```
+
+Avant d'appeler requestPhotoAccess(), afficher un PermissionPrimingSheet :
+  - .sheet présenté depuis le CTA final de l'onboarding
+  - Background : AnimatedBackground(), cornerRadius 32 (UISheetPresentationController)
+  - Icône : "photo.on.rectangle" font size 56, foreground indigo
+  - Titre : "Accès à tes photos"
+  - Description : "Cloakyy a besoin d'accéder à ta bibliothèque pour charger et
+    sauvegarder les photos protégées. Aucune photo n'est envoyée nulle part."
+  - 2 bullets :
+      • "Lecture pour charger tes photos"
+      • "Écriture pour sauvegarder la version protégée"
+  - Bouton "Autoriser l'accès" → appel requestPhotoAccess() → si granted : dismiss + onFinish()
+  - Lien "Pas maintenant" → dismiss sans rien faire (l'utilisateur pourra re-tenter)
+
+--------------------------------------------------------------------------------
+## PARTIE 6 — NOTES D'IMPLÉMENTATION IMPORTANTES
+
+### Compatibilité
+  - iOS 16.0 minimum (pas de iOS 15 backport nécessaire)
+  - Swift 5.9+
+  - SwiftUI + UIKit bridging pour AVKit et Haptics
+  - Ne pas utiliser de packages tiers / SPM — uniquement frameworks Apple natifs
+
+### Nommage et conventions
+  - Respecter les conventions existantes du projet (MARK: comments, file headers)
+  - Tous les fichiers nouveaux avec header // NomFichier.swift // Cloaky
+  - French pour les strings UI, English pour les identifiants code
+
+### Fichiers à modifier
+  RÉÉCRIRE :
+    - CloakyApp/UI/Screens/Onboarding/OnboardingFlowView.swift
+    - CloakyApp/UI/Screens/Onboarding/PaywallView.swift
+    - CloakyApp/StoreKitConfig.storekit
+
+  MODIFIER :
+    - CloakyApp/App/AppState.swift → ajouter freePhotosUsed + hasReachedFreeLimit
+    - CloakyApp/App/StoreManager.swift → mettre à jour displayName produit
+    - CloakyApp/App/RootView.swift → ajouter trigger paywall post-utilisation
+
+  CRÉER :
+    - CloakyApp/Utilities/HapticManager.swift
+    - CloakyApp/Utilities/PermissionManager.swift
+    - CloakyApp/UI/Components/PermissionPrimingSheet.swift
+    - CloakyApp/UI/Screens/Onboarding/HeroVideoView.swift
+    - CloakyApp/UI/Screens/Onboarding/PurchaseSuccessView.swift
+
+  NE PAS TOUCHER :
+    - CloakyApp/UI/Screens/Onboarding/AnimatedBackground.swift
+    - CloakyApp/Core/Detection/
+    - CloakyApp/Core/Obfuscation/
+    - CloakyApp/Core/Processing/
+    - Tous les fichiers Gallery, Editor, Preview, Processing screens
+
+### Gestion des états / bord cases
+  - Si storeManager.products est vide (chargement échoué) : toujours afficher
+    le bouton avec prix hardcodé "9,99€" et tenter à nouveau au tap
+  - Si l'achat est déjà effectué (isPurchased == true) : l'onboarding doit
+    appeler directement onFinish() sans passer par la page CTA de paiement
+  - Si PHPhotoLibrary.authorizationStatus == .denied : afficher un message
+    avec bouton "Ouvrir Réglages" → UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+  - Si la vidéo hero n'existe pas : fallback silencieux vers AnimatedBackground()
+
+### Dark Mode
+  - Forcer le dark mode dans toutes les vues de l'onboarding :
+    .preferredColorScheme(.dark) sur OnboardingFlowView et PaywallView
+  - Ne pas dépendre du system color scheme pour ces vues
+
+### Performance
+  - AVPlayer dans HeroVideoView doit être pausé quand la vue disparaît (onDisappear)
+  - Les animations d'entrée des pages doivent utiliser .task {} ou .onAppear {}
+    avec des delays enchaînés, pas de DispatchQueue.main.asyncAfter
+  - Utiliser @State private var hasAppeared = false pour déclencher les animations
+    une seule fois par page
+
+--------------------------------------------------------------------------------
+## RÉCAPITULATIF RAPIDE — CHECKLIST DE LIVRAISON
+
+[ ] OnboardingFlowView.swift réécrit avec 4 pages + navigation swipe
+[ ] Page 0 : vidéo hero (ou fallback) + overlay gradient + CTA "3 photos gratuites"
+[ ] Page 1 : 3 cards détection animées + bandeau metadata
+[ ] Page 2 : 3 trust rows animées + badge confiance
+[ ] Page 3 : CTA final blanc + compteur 3 cercles + footer "9,99€ unique"
+[ ] PaywallView.swift réécrit : trigger post-3-photos, prix 9,99€, achat unique
+[ ] Animation succès achat avec checkmark + confettis + auto-dismiss
+[ ] StoreKitConfig.storekit mis à jour : prix 9,99€ + localisation FR
+[ ] AppState.swift : freePhotosUsed + hasReachedFreeLimit + UserDefaults
+[ ] RootView.swift : fullScreenCover paywall déclenché post-utilisation
+[ ] HapticManager.swift créé + utilisé sur tous les CTAs
+[ ] PressEffect ViewModifier appliqué sur tous les boutons
+[ ] PermissionManager.swift + PermissionPrimingSheet avant accès photos
+[ ] HeroVideoView.swift avec loop + mute + fallback silencieux
+[ ] PurchaseSuccessView.swift avec animation succès
+[ ] .preferredColorScheme(.dark) sur toutes les vues onboarding/paywall
+[ ] Aucune lib tierce — 100% frameworks Apple natifs
+
+================================================================================
+FIN DU PROMPT
+================================================================================

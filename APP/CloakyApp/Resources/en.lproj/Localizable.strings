@@ -1,0 +1,180 @@
+/* 
+  Localizable.strings
+  Cloakyy
+ 
+  English (Base) localization strings.
+*/
+
+// MARK: - General
+"ok" = "OK";
+"cancel" = "Cancel";
+"error" = "Error";
+"done" = "Done";
+"settings" = "Settings";
+"loading" = "Loading...";
+
+// MARK: - Gallery View
+"gallery.title" = "Cloakyy";
+"gallery.tagline" = "Protect Your Privacy";
+"gallery.subtitle" = "Detect and obfuscate biometric data\nin your photos before sharing";
+"gallery.select.photo" = "Select Photo";
+"gallery.select.photo.hint" = "Opens your photo library to select an image for protection";
+"gallery.take.photo" = "Take Photo";
+"gallery.take.photo.hint" = "Opens camera to capture a new photo for protection";
+"gallery.footer.ondevice" = "All processing happens on-device";
+"gallery.footer.nodata" = "No data leaves your phone";
+
+// MARK: - Settings View
+"settings.title" = "Settings";
+"settings.done" = "Done";
+"settings.about" = "About";
+"settings.terms" = "Terms & Conditions";
+"settings.privacy" = "Privacy Policy";
+"settings.licenses" = "Licenses";
+"settings.version" = "Version";
+"settings.more" = "More";
+"settings.share" = "Share the app (support us 🚀)";
+"settings.follow.x" = "Follow us on X";
+"settings.footer" = "Made with ❤️ in 🇫🇷";
+
+// MARK: - Share Text
+"share.text" = "Check out Cloakyy - Protect your privacy by removing biometric data from your photos before sharing! 🛡️";
+
+// MARK: - Legal Texts Headers
+"legal.terms.title" = "Terms & Conditions";
+"legal.privacy.title" = "Privacy Policy";
+"legal.licenses.title" = "Open Source Licenses";
+
+// MARK: - Editor View
+"editor.title" = "Editor";
+"editor.result.title" = "Result";
+"editor.redetect" = "Re-detect";
+"editor.restore.all" = "Restaurer toutes les zones";
+"editor.clear.all" = "Effacer tout";
+"editor.processing" = "Traitement en cours...";
+"editor.zoom.mode" = "Zoom & Pan Mode";
+"editor.zoom.hint" = "Pinch to zoom • Drag to pan • Tap 🔍 to exit";
+"editor.detection.analyzing" = "Analyse en cours...";
+"editor.nothing.detected" = "Aucune donnée biométrique détectée";
+"editor.strip.metadata" = "Strip Metadata & Continue";
+"editor.process" = "Process";
+"editor.configuration" = "Configuration";
+"editor.what.to.blur" = "Que souhaitez-vous flouter ?";
+"editor.cancel" = "Annuler";
+"editor.share" = "Partager";
+"editor.share.image.saved" = "Image téléchargée avec succès";
+"editor.new.image" = "Nouvelle image";
+"editor.image.saved.photos" = "Image sauvegardée dans Photos";
+
+// MARK: - Brush Mode
+"editor.brush.title" = "Blur brush";
+"editor.brush.size" = "Size";
+"editor.brush.intensity" = "Blur strength";
+"editor.brush.regions.applied" = "%@ will also be applied";
+
+// MARK: - Processing View
+"processing.title" = "Processing";
+"processing.initializing" = "Initializing...";
+"processing.in.progress" = "Processing...";
+"processing.finalizing" = "Finalizing...";
+"processing.percentage" = "%d%%";
+"processing.cancel" = "Cancel";
+"processing.completed" = "Completed";
+"processing.time" = "Processed in %.1fs";
+"processing.view.result" = "View Result";
+"processing.failed" = "FAILED";
+"processing.retry" = "Retry";
+"processing.back" = "Back";
+"processing.preparing" = "Preparing preview…";
+
+// MARK: - Preview View
+"preview.title" = "Preview";
+"preview.saved" = "Saved";
+"preview.save" = "Save";
+
+// MARK: - Editor Modes
+"editor.mode.auto" = "Auto Detect";
+"editor.mode.manual" = "Manual Brush";
+
+// MARK: - Obfuscation Methods
+"method.intelligent.blur" = "Intelligent Blur";
+"method.black.box" = "Black Box";
+"method.emoji.overlay" = "Emoji Overlay";
+"method.inpainting" = "Inpainting";
+
+// MARK: - Obfuscation Method Descriptions
+"method.desc.intelligent.blur" = "Variable blur with natural appearance";
+"method.desc.black.box" = "Solid black censoring (maximum protection)";
+"method.desc.emoji.overlay" = "Fun emoji covers";
+"method.desc.inpainting" = "AI-powered context fill (coming soon)";
+
+// MARK: - Process Targets
+"process.target.all" = "All";
+"process.target.only.brush" = "Only Brush";
+"process.target.only.detected" = "All Detected Biometry";
+"process.target.only.faces" = "Only Faces";
+"process.target.only.hands" = "Only Hands";
+
+// MARK: - Process Target Details
+"process.detail.all" = "%d regions + %d strokes";
+"process.detail.brush.single" = "%d stroke";
+"process.detail.brush.plural" = "%d strokes";
+"process.detail.region.single" = "%d region";
+"process.detail.region.plural" = "%d regions";
+"process.detail.face.single" = "%d face";
+"process.detail.face.plural" = "%d faces";
+"process.detail.hand.single" = "%d hand";
+"process.detail.hand.plural" = "%d hands";
+
+// MARK: - Detection Results Summary
+"detection.summary.face.single" = "%d face";
+"detection.summary.face.plural" = "%d faces";
+"detection.summary.hand.single" = "%d hand";
+"detection.summary.hand.plural" = "%d hands";
+"detection.summary.text.single" = "%d text";
+"detection.summary.text.plural" = "%d texts";
+"detection.summary.none" = "No biometrics detected";
+
+// MARK: - Before/After Slider
+"slider.original" = "Original";
+"slider.blurred" = "Blurred";
+"slider.accessibility.label" = "Before/After comparison";
+"slider.accessibility.hint" = "Drag to compare the original and blurred image";
+
+// MARK: - Editor
+"editor.regions.will.also.be.applied" = "%@ will also be applied";
+
+// MARK: - Editor Accessibility
+"editor.zoom.enable" = "Enable zoom mode";
+"editor.zoom.disable" = "Disable zoom mode";
+"editor.zoom.enable.hint" = "Tap to zoom and pan the image";
+"editor.zoom.disable.hint" = "Tap to return to editing tools";
+
+// MARK: - Processing
+"processing.starting" = "Starting...";
+"processing.applying.region.protection" = "Applying region protection...";
+"processing.applying.brush.blur" = "Applying brush blur...";
+"processing.finalizing" = "Finalizing...";
+"processing.removing.metadata" = "Removing metadata...";
+"processing.complete" = "Complete";
+"processing.cancelled" = "Cancelled";
+
+// MARK: - Errors
+"error.load.image" = "Failed to load image for detection";
+"error.save.image" = "No processed image to save";
+"error.photo.access.denied" = "Photo library access denied";
+"error.photo.access.denied.settings" = "Photo access denied. Please enable in Settings.";
+"error.camera.unavailable" = "Camera is not available on this device.";
+
+// MARK: - Brush Canvas
+"brush.applying.blur" = "Applying blur…";
+"brush.undoing" = "Reverting…";
+"brush.updating" = "Updating…";
+
+// MARK: - Editor Brush
+"editor.brush.threshold.warning" = "✓ Irreversible - AI cannot reconstruct";
+
+// MARK: - Preview
+"preview.metadata.removed" = "Metadata removed";
+"preview.texts.hidden" = "%d text hidden";
+"preview.texts.hidden.plural" = "%d texts hidden";

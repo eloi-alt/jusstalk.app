@@ -71,5 +71,6 @@ schemes:
         Jusstalk: all
     run:
       config: Debug
+      storeKitConfiguration: StoreKitConfig.storekit
     archive:
       config: Release

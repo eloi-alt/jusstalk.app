@@ -8,7 +8,7 @@ struct Config {
     private static let envDeepseekKey = ProcessInfo.processInfo.environment["DEEPSEEK_API_KEY"]
 
     static var apiKey: String {
-        return envVoxtralKey ?? "pIqzJAM6C2J9Tn4PnTjOXd6EyEAqAeMJ"
+        return envVoxtralKey ?? "REDACTED_MISTRAL"
     }
 
     static var deepseekKey: String {

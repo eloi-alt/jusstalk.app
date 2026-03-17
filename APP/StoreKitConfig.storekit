@@ -1,0 +1,62 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "D35CBA5E",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "6760703492",
+      "localizations" : [
+        {
+          "description" : "Transcriptions illimitées, sans limite de temps.",
+          "displayName" : "Jusstalk Pro",
+          "locale" : "fr"
+        },
+        {
+          "description" : "Unlimited transcriptions, no time limit.",
+          "displayName" : "Jusstalk Pro",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.jusstalk.unlock_pro",
+      "referenceName" : "Jusstalk Pro",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6759188404",
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : false,
+    "_billingIssuesEnabled" : false,
+    "_developerTeamID" : "M467H6N2WC",
+    "_disableDialogs" : false,
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 795439638.53393495,
+    "_locale" : "en_US",
+    "_renewalBillingIssuesEnabled" : false,
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+
+    ],
+    "_timeRate" : 0
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}
