@@ -2,6 +2,9 @@
 .env
 *.env
 
+# Xcode Config (contains API keys - never commit)
+*.xcconfig
+
 # Xcode
 build/
 DerivedData/

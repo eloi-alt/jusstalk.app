@@ -10,7 +10,6 @@ struct ContentView: View {
     @EnvironmentObject private var storeManager: StoreManager
     @StateObject private var recordingVM = RecordingViewModel()
     @State private var showSettings = false
-    @State private var showTranscription = false
     @State private var showLastRecording = false
     
     private let lastRecordingManager = LastRecordingManager.shared
@@ -39,11 +38,11 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $showSettings) { SettingsView() }
-            .sheet(isPresented: $showTranscription) {
-                if let transcription = recordingVM.currentTranscription {
-                    TranscriptionView(transcription: transcription) { 
-                        recordingVM.reset()
-                    }
+            .sheet(item: $recordingVM.currentTranscription, onDismiss: {
+                recordingVM.resetAfterPresentation()
+            }) { transcription in
+                TranscriptionView(transcription: transcription) { 
+                    recordingVM.resetAfterPresentation()
                 }
             }
             .sheet(isPresented: $showLastRecording) {
@@ -64,7 +63,6 @@ struct ContentView: View {
                 })
                 .environmentObject(storeManager)
             }
-            .onChange(of: recordingVM.transcriptionComplete) { if $0 { showTranscription = true } }
             .onAppear {
                 recordingVM.configure(storeManager: storeManager)
             }

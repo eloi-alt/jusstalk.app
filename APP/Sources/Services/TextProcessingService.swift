@@ -1,8 +1,18 @@
 import Foundation
+import OSLog
+import CryptoKit
 
 class TextProcessingService {
-    private let apiEndpoint = "https://api.deepseek.com/v1/chat/completions"
-    private var apiKey: String { Config.deepseekKey }
+    private let apiEndpoint = Config.deepseekAPIEndpoint
+    private var apiKey: String { Config.deepseekAPIKey }
+    private let sessionDelegate = APISessionDelegate()
+    
+    private lazy var secureSession: URLSession = {
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 30
+        config.timeoutIntervalForResource = 60
+        return URLSession(configuration: config, delegate: sessionDelegate, delegateQueue: nil)
+    }()
 
     func formatAsMarkdown(text: String, metadata: [String: Any]) async throws -> String {
         let prompt = """
@@ -127,7 +137,7 @@ Transcription:
 
         request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
 
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await secureSession.data(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse else {
             throw TextProcessingError.invalidResponse
@@ -135,7 +145,7 @@ Transcription:
 
         if httpResponse.statusCode != 200 {
             let errorMessage = String(data: data, encoding: .utf8) ?? "Unknown error"
-            print("DeepSeek API Error: \(errorMessage)")
+            AppLogger.error("DeepSeek API error: \(errorMessage)", category: AppLogger.network)
             throw TextProcessingError.apiError
         }
 
@@ -169,7 +179,7 @@ enum TextProcessingError: Error {
     case apiError
     case invalidResponse
 
-    var localizedDescription: String {
+    var localizedDescription: String? {
         switch self {
         case .invalidURL:
             return "Invalid API endpoint URL"

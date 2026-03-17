@@ -3,8 +3,10 @@
 //
 // Manages free trial usage with atomic reservation/commit/rollback flow.
 // Ensures trials are only consumed AFTER successful transcription.
+// iCloud sync removed to prevent trial bypass across devices.
 
 import Foundation
+import OSLog
 
 struct FreeTrialSnapshot: Codable, Sendable {
     var usedTranscriptionCount: Int
@@ -69,30 +71,11 @@ actor FreeTrialManager {
     private let storageKey = "free_trial_snapshot_v2"
     private var cachedSnapshot: FreeTrialSnapshot?
     private var currentReservation: TrialReservation?
-    private var iCloudAvailable: Bool = false
     private let reservationTimeoutSeconds: TimeInterval = 600
-
-    init() {
-        checkiCloudAvailability()
-    }
-
-    private func checkiCloudAvailability() {
-        if FileManager.default.ubiquityIdentityToken != nil {
-            do {
-                _ = NSUbiquitousKeyValueStore.default
-                iCloudAvailable = true
-            } catch {
-                iCloudAvailable = false
-            }
-        } else {
-            iCloudAvailable = false
-        }
-    }
 
     func loadSnapshot() -> FreeTrialSnapshot {
         let local = readLocal()
-        let cloud = readCloud()
-        var merged = merge(local: local, cloud: cloud)
+        var merged = local ?? .initial
 
         merged = cleanupExpiredReservations(snapshot: merged)
 
@@ -114,8 +97,7 @@ actor FreeTrialManager {
 
     func refreshFromCloudIfNeeded() -> FreeTrialSnapshot {
         let current = cachedSnapshot ?? loadSnapshot()
-        let cloud = readCloud()
-        var merged = merge(local: current, cloud: cloud)
+        var merged = current
 
         merged = cleanupExpiredReservations(snapshot: merged)
 
@@ -152,27 +134,21 @@ actor FreeTrialManager {
         updatedSnapshot.pendingReservationID = reservation.id
         cachedSnapshot = updatedSnapshot
 
-        #if DEBUG
-        print("[FreeTrialManager] Reserved trial. ReservationID: \(reservation.id), remaining: \(updatedSnapshot.remainingTranscriptions)")
-        #endif
+        AppLogger.debug("Reserved trial. ReservationID: \(reservation.id), remaining: \(updatedSnapshot.remainingTranscriptions)", category: AppLogger.trial)
 
         return .reserved(reservation, snapshot: updatedSnapshot)
     }
 
     func commitTrialReservation(_ reservationID: UUID) -> FreeTrialSnapshot {
         guard let reservation = currentReservation, reservation.id == reservationID else {
-            #if DEBUG
-            print("[FreeTrialManager] Commit failed: reservation not found or ID mismatch")
-            #endif
+            AppLogger.debug("Commit failed: reservation not found or ID mismatch", category: AppLogger.trial)
             return cachedSnapshot ?? loadSnapshot()
         }
 
         var snapshot = cachedSnapshot ?? loadSnapshot()
 
         guard snapshot.pendingReservationID == reservationID else {
-            #if DEBUG
-            print("[FreeTrialManager] Commit failed: pending reservation ID mismatch")
-            #endif
+            AppLogger.debug("Commit failed: pending reservation ID mismatch", category: AppLogger.trial)
             return snapshot
         }
 
@@ -187,18 +163,14 @@ actor FreeTrialManager {
         cachedSnapshot = snapshot
         persist(snapshot)
 
-        #if DEBUG
-        print("[FreeTrialManager] Committed trial. Total used: \(snapshot.usedTranscriptionCount), remaining: \(snapshot.remainingTranscriptions)")
-        #endif
+        AppLogger.debug("Committed trial. Total used: \(snapshot.usedTranscriptionCount), remaining: \(snapshot.remainingTranscriptions)", category: AppLogger.trial)
 
         return snapshot
     }
 
     func rollbackTrialReservation(_ reservationID: UUID) -> FreeTrialSnapshot {
         guard currentReservation?.id == reservationID else {
-            #if DEBUG
-            print("[FreeTrialManager] Rollback: no matching reservation found")
-            #endif
+            AppLogger.debug("Rollback: no matching reservation found", category: AppLogger.trial)
             return cachedSnapshot ?? loadSnapshot()
         }
 
@@ -215,9 +187,7 @@ actor FreeTrialManager {
         cachedSnapshot = snapshot
         persist(snapshot)
 
-        #if DEBUG
-        print("[FreeTrialManager] Rolled back trial. usedTranscriptionCount: \(snapshot.usedTranscriptionCount)")
-        #endif
+        AppLogger.debug("Rolled back trial. usedTranscriptionCount: \(snapshot.usedTranscriptionCount)", category: AppLogger.trial)
 
         return snapshot
     }
@@ -241,9 +211,7 @@ actor FreeTrialManager {
             cachedSnapshot = snapshot
             persist(snapshot)
 
-            #if DEBUG
-            print("[FreeTrialManager] Cleared expired reservation")
-            #endif
+            AppLogger.debug("Cleared expired reservation", category: AppLogger.trial)
         }
     }
 
@@ -284,52 +252,14 @@ actor FreeTrialManager {
         return snapshot.remainingTranscriptions
     }
 
-    private func merge(local: FreeTrialSnapshot?, cloud: FreeTrialSnapshot?) -> FreeTrialSnapshot {
-        let localValue = local ?? .initial
-        let cloudValue = cloud ?? .initial
-
-        if localValue.usedTranscriptionCount < 0 || cloudValue.usedTranscriptionCount < 0 {
-            return FreeTrialSnapshot(
-                usedTranscriptionCount: 3,
-                pendingReservationID: nil,
-                maxFreeTranscriptions: 3,
-                maxSecondsPerTranscription: 60
-            )
-        }
-
-        return FreeTrialSnapshot(
-            usedTranscriptionCount: min(3, max(localValue.usedTranscriptionCount, cloudValue.usedTranscriptionCount)),
-            pendingReservationID: localValue.pendingReservationID ?? cloudValue.pendingReservationID,
-            maxFreeTranscriptions: 3,
-            maxSecondsPerTranscription: 60
-        )
-    }
-
     private func readLocal() -> FreeTrialSnapshot? {
         guard let data = UserDefaults.standard.data(forKey: storageKey) else { return nil }
-        return try? JSONDecoder().decode(FreeTrialSnapshot.self, from: data)
-    }
-
-    private func readCloud() -> FreeTrialSnapshot? {
-        guard iCloudAvailable else { return nil }
-        guard let data = try? NSUbiquitousKeyValueStore.default.data(forKey: storageKey) else { return nil }
         return try? JSONDecoder().decode(FreeTrialSnapshot.self, from: data)
     }
 
     private func persist(_ snapshot: FreeTrialSnapshot) {
         guard let data = try? JSONEncoder().encode(snapshot) else { return }
         UserDefaults.standard.set(data, forKey: storageKey)
-
-        if iCloudAvailable {
-            do {
-                try NSUbiquitousKeyValueStore.default.set(data, forKey: storageKey)
-                NSUbiquitousKeyValueStore.default.synchronize()
-            } catch {
-                #if DEBUG
-                print("[FreeTrialManager] iCloud sync failed: \(error)")
-                #endif
-            }
-        }
     }
 
     #if DEBUG
@@ -345,20 +275,7 @@ actor FreeTrialManager {
         currentReservation = nil
         UserDefaults.standard.removeObject(forKey: storageKey)
 
-        if iCloudAvailable {
-            do {
-                try NSUbiquitousKeyValueStore.default.removeObject(forKey: storageKey)
-                NSUbiquitousKeyValueStore.default.synchronize()
-            } catch {
-                #if DEBUG
-                print("[FreeTrialManager] iCloud reset failed: \(error)")
-                #endif
-            }
-        }
-
-        #if DEBUG
-        print("[FreeTrialManager] Trial reset to initial state")
-        #endif
+        AppLogger.debug("Trial reset to initial state", category: AppLogger.trial)
     }
 }
 

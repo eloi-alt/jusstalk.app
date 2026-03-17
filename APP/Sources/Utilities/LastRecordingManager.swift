@@ -1,4 +1,5 @@
 import Foundation
+import OSLog
 
 struct SavedRecording: Codable {
     let text: String
@@ -19,7 +20,9 @@ class LastRecordingManager {
             let data = try encoder.encode(recording)
             UserDefaults.standard.set(data, forKey: userDefaultsKey)
         } catch {
-            print("Failed to save recording: \(error)")
+            #if DEBUG
+            AppLogger.debug("Failed to save recording: \(error)", category: AppLogger.audio)
+            #endif
         }
     }
 
@@ -30,7 +33,9 @@ class LastRecordingManager {
         do {
             return try decoder.decode(SavedRecording.self, from: data)
         } catch {
-            print("Failed to load recording: \(error)")
+            #if DEBUG
+            AppLogger.debug("Failed to load recording: \(error)", category: AppLogger.audio)
+            #endif
             return nil
         }
     }

@@ -1,7 +1,8 @@
 // FreeImageTrialManager.swift
 // Cloaky
 //
-// Manages free trial usage for 3 selected images with iCloud sync.
+// Manages free trial usage for 3 selected images.
+// iCloud sync removed to prevent trial bypass across devices.
 // Consumption happens on image selection, BEFORE entering the editor.
 
 import Foundation
@@ -28,15 +29,13 @@ actor FreeImageTrialManager {
     static let shared = FreeImageTrialManager()
 
     private let storageKey = "free_image_trial_snapshot_v1"
-    private let ubiquityStore = NSUbiquitousKeyValueStore.default
     private var cachedSnapshot: FreeImageTrialSnapshot?
 
     func loadSnapshot() -> FreeImageTrialSnapshot {
         if let cachedSnapshot { return cachedSnapshot }
 
         let local = readLocal()
-        let cloud = readCloud()
-        let merged = merge(local: local, cloud: cloud)
+        let merged = local ?? .initial
 
         cachedSnapshot = merged
         persist(merged)
@@ -45,8 +44,7 @@ actor FreeImageTrialManager {
 
     func refreshFromCloudIfNeeded() -> FreeImageTrialSnapshot {
         let current = cachedSnapshot ?? loadSnapshot()
-        let cloud = readCloud()
-        let merged = merge(local: current, cloud: cloud)
+        let merged = current
 
         cachedSnapshot = merged
         persist(merged)
@@ -100,39 +98,14 @@ actor FreeImageTrialManager {
         return (true, updated)
     }
 
-    private func merge(local: FreeImageTrialSnapshot?, cloud: FreeImageTrialSnapshot?) -> FreeImageTrialSnapshot {
-        let localValue = local ?? .initial
-        let cloudValue = cloud ?? .initial
-        
-        if localValue.usedImageCount < 0 || cloudValue.usedImageCount < 0 {
-            return FreeImageTrialSnapshot(usedImageCount: 3, maxFreeImages: 3)
-        }
-        
-        return FreeImageTrialSnapshot(
-            usedImageCount: min(3, max(localValue.usedImageCount, cloudValue.usedImageCount)),
-            maxFreeImages: 3
-        )
-    }
-
     private func readLocal() -> FreeImageTrialSnapshot? {
         guard let data = UserDefaults.standard.data(forKey: storageKey) else { return nil }
-        return try? JSONDecoder().decode(FreeImageTrialSnapshot.self, from: data)
-    }
-
-    private func readCloud() -> FreeImageTrialSnapshot? {
-        guard let data = ubiquityStore.data(forKey: storageKey) else { return nil }
         return try? JSONDecoder().decode(FreeImageTrialSnapshot.self, from: data)
     }
 
     private func persist(_ snapshot: FreeImageTrialSnapshot) {
         guard let data = try? JSONEncoder().encode(snapshot) else { return }
         UserDefaults.standard.set(data, forKey: storageKey)
-        
-        let iCloudAvailable = FileManager.default.ubiquityIdentityToken != nil
-        if iCloudAvailable {
-            ubiquityStore.set(data, forKey: storageKey)
-            ubiquityStore.synchronize()
-        }
     }
 
     #if DEBUG
@@ -145,12 +118,6 @@ actor FreeImageTrialManager {
     func resetTrial() {
         cachedSnapshot = .initial
         UserDefaults.standard.removeObject(forKey: storageKey)
-        
-        let iCloudAvailable = FileManager.default.ubiquityIdentityToken != nil
-        if iCloudAvailable {
-            ubiquityStore.removeObject(forKey: storageKey)
-            ubiquityStore.synchronize()
-        }
         
         #if DEBUG
         print("[FreeImageTrialManager] Trial reset to initial state")

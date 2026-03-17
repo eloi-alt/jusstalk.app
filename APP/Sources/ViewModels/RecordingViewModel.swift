@@ -15,7 +15,6 @@ class RecordingViewModel: ObservableObject {
     @Published var statusText = "Tap to record"
     @Published var errorMessage: String?
     @Published var currentTranscription: Transcription?
-    @Published var transcriptionComplete = false
     
     // MARK: - Paywall Properties
     
@@ -51,9 +50,18 @@ class RecordingViewModel: ObservableObject {
         }
     }
     
+    func resetAfterPresentation() {
+        currentTranscription = nil
+        errorMessage = nil
+        statusText = "Tap to record"
+    }
+    
     // MARK: - Private Methods
     
     private func startRecording() async {
+        currentTranscription = nil
+        errorMessage = nil
+        
         let isPremium = storeManager?.isPremium ?? false
         let isEligible = await checkEligibility(isPremium: isPremium)
         
@@ -63,7 +71,6 @@ class RecordingViewModel: ObservableObject {
             return
         }
         
-        errorMessage = nil
         let hasPermission = await audioService.requestMicrophonePermission()
         guard hasPermission else {
             errorMessage = "Microphone access required"
@@ -80,11 +87,15 @@ class RecordingViewModel: ObservableObject {
     }
 
     private func stopRecording() async {
+        guard !isProcessing else { return }
+        
         isRecording = false
-        statusText = "Transcribing..."
         isProcessing = true
+        statusText = "Transcribing..."
+        errorMessage = nil
 
         guard let audioURL = audioService.stopRecording() else {
+            currentTranscription = nil
             errorMessage = "Failed to save recording"
             isProcessing = false
             statusText = "Tap to record"
@@ -92,6 +103,7 @@ class RecordingViewModel: ObservableObject {
         }
 
         guard FileManager.default.fileExists(atPath: audioURL.path) else {
+            currentTranscription = nil
             errorMessage = "Recording file not found"
             isProcessing = false
             statusText = "Tap to record"
@@ -101,6 +113,7 @@ class RecordingViewModel: ObservableObject {
         let duration = audioService.getAudioDuration(url: audioURL)
         
         guard duration > 0 else {
+            currentTranscription = nil
             errorMessage = "Recording is empty"
             audioService.cleanupAudioFile(url: audioURL)
             isProcessing = false
@@ -143,11 +156,11 @@ class RecordingViewModel: ObservableObject {
         case .reserved(let reservation, _):
             do {
                 let transcribedText = try await transcriptionService.transcribe(audioURL: audioURL)
-
                 let trimmedText = transcribedText.trimmingCharacters(in: .whitespacesAndNewlines)
 
                 if trimmedText.isEmpty {
                     _ = await trialManager.rollbackTrialReservation(reservation.id)
+                    currentTranscription = nil
                     errorMessage = "Transcription vide, aucun essai consommé"
                     statusText = "Tap to record"
                     isProcessing = false
@@ -157,13 +170,13 @@ class RecordingViewModel: ObservableObject {
                 _ = await trialManager.commitTrialReservation(reservation.id)
 
                 currentTranscription = Transcription(text: trimmedText, audioURL: audioURL, duration: duration)
-                transcriptionComplete = true
                 statusText = "Tap to record"
 
                 await updateRemainingTrialCount()
 
             } catch {
                 _ = await trialManager.rollbackTrialReservation(reservation.id)
+                currentTranscription = nil
                 errorMessage = "Transcription failed: \(error.localizedDescription)"
                 statusText = "Tap to record"
             }
@@ -186,6 +199,7 @@ class RecordingViewModel: ObservableObject {
                 if let reservation = reservation {
                     _ = await trialManager.rollbackTrialReservation(reservation.id)
                 }
+                currentTranscription = nil
                 errorMessage = "Transcription vide"
                 statusText = "Tap to record"
                 isProcessing = false
@@ -193,7 +207,6 @@ class RecordingViewModel: ObservableObject {
             }
 
             currentTranscription = Transcription(text: trimmedText, audioURL: audioURL, duration: duration)
-            transcriptionComplete = true
             statusText = "Tap to record"
 
             if !isPremium {
@@ -204,6 +217,7 @@ class RecordingViewModel: ObservableObject {
             if let reservation = reservation {
                 _ = await trialManager.rollbackTrialReservation(reservation.id)
             }
+            currentTranscription = nil
             errorMessage = "Transcription failed: \(error.localizedDescription)"
             statusText = "Tap to record"
         }
@@ -223,12 +237,5 @@ class RecordingViewModel: ObservableObject {
     private func updateRemainingTrialCount() async {
         let snapshot = await trialManager.loadSnapshot()
         remainingTrialTranscriptions = snapshot.remainingTranscriptions
-    }
-
-    func reset() {
-        currentTranscription = nil
-        transcriptionComplete = false
-        errorMessage = nil
-        statusText = "Tap to record"
     }
 }

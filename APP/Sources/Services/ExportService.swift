@@ -1,6 +1,7 @@
 import Foundation
 import PDFKit
 import UIKit
+import OSLog
 
 class ExportService {
     private let textProcessor = TextProcessingService()
@@ -19,7 +20,9 @@ class ExportService {
                 let formattedText = try await textProcessor.formatAsMarkdown(text: text, metadata: metadata)
                 return try exportToMD(text: formattedText, url: fileURL, metadata: metadata)
             } catch {
-                print("AI formatting failed, using basic Markdown: \(error)")
+                #if DEBUG
+                AppLogger.debug("AI formatting failed, using basic Markdown: \(error)", category: AppLogger.transcription)
+                #endif
                 return try exportToMD(text: text, url: fileURL, metadata: metadata)
             }
 
@@ -29,7 +32,9 @@ class ExportService {
                 try formattedJSON.write(to: fileURL, atomically: true, encoding: .utf8)
                 return fileURL
             } catch {
-                print("AI formatting failed, using basic JSON: \(error)")
+                #if DEBUG
+                AppLogger.debug("AI formatting failed, using basic JSON: \(error)", category: AppLogger.transcription)
+                #endif
                 return try exportToJSON(text: text, url: fileURL, metadata: metadata)
             }
 
@@ -46,7 +51,9 @@ class ExportService {
                 try fullHTML.write(to: fileURL, atomically: true, encoding: .utf8)
                 return fileURL
             } catch {
-                print("AI formatting failed, using basic HTML: \(error)")
+                #if DEBUG
+                AppLogger.debug("AI formatting failed, using basic HTML: \(error)", category: AppLogger.transcription)
+                #endif
                 return try exportToHTML(text: text, url: fileURL)
             }
 
@@ -59,7 +66,9 @@ class ExportService {
                 try formattedCSV.write(to: fileURL, atomically: true, encoding: .utf8)
                 return fileURL
             } catch {
-                print("AI formatting failed, using basic CSV: \(error)")
+                #if DEBUG
+                AppLogger.debug("AI formatting failed, using basic CSV: \(error)", category: AppLogger.transcription)
+                #endif
                 return try exportToCSV(text: text, url: fileURL, metadata: metadata)
             }
         }

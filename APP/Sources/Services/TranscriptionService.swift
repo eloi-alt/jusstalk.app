@@ -1,4 +1,6 @@
 import Foundation
+import OSLog
+import CryptoKit
 
 enum TranscriptionError: Error {
     case invalidURL
@@ -8,8 +10,17 @@ enum TranscriptionError: Error {
 }
 
 class TranscriptionService {
+    private let sessionDelegate = APISessionDelegate()
+    
+    private lazy var secureSession: URLSession = {
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 60
+        config.timeoutIntervalForResource = 120
+        return URLSession(configuration: config, delegate: sessionDelegate, delegateQueue: nil)
+    }()
+    
     func transcribe(audioURL: URL) async throws -> String {
-        guard let url = URL(string: Config.voxtralAPIEndpoint) else {
+        guard let url = URL(string: Config.mistralAPIEndpoint) else {
             throw TranscriptionError.invalidURL
         }
 
@@ -19,7 +30,7 @@ class TranscriptionService {
 
         let boundary = "Boundary-\(UUID().uuidString)"
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(Config.apiKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(Config.mistralAPIKey)", forHTTPHeaderField: "Authorization")
 
         var body = Data()
         let audioData = try Data(contentsOf: audioURL)
@@ -44,7 +55,7 @@ class TranscriptionService {
 
         for attempt in 0..<3 {
             do {
-                let (data, response) = try await URLSession.shared.data(for: request)
+                let (data, response) = try await secureSession.data(for: request)
                 guard let httpResponse = response as? HTTPURLResponse else {
                     throw TranscriptionError.invalidResponse
                 }
@@ -59,6 +70,9 @@ class TranscriptionService {
                 }
 
                 let errorMsg = String(data: data, encoding: .utf8) ?? "Unknown error"
+                #if DEBUG
+                AppLogger.network.error("Mistral API error: \(errorMsg)")
+                #endif
                 throw TranscriptionError.apiError(errorMsg)
             } catch {
                 if attempt < 2 {

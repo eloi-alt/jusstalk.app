@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import OSLog
 
 @MainActor
 class TranscriptionViewModel: ObservableObject {
@@ -53,7 +54,9 @@ class TranscriptionViewModel: ObservableObject {
             exportedFileURL = fileURL
             showDownload = true
         } catch {
-            print("Export failed")
+            #if DEBUG
+            AppLogger.debug("Export failed: \(error)", category: AppLogger.transcription)
+            #endif
         }
         isExporting = false
     }
