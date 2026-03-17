@@ -1,9 +1,10 @@
 // RecordingViewModel.swift
 // Jusstalk
 //
-// ViewModel that handles audio recording and transcription with premium trial support.
+// ViewModel that handles audio recording and transcription with atomic trial consumption.
 
 import Foundation
+import SwiftUI
 
 @MainActor
 class RecordingViewModel: ObservableObject {
@@ -25,7 +26,7 @@ class RecordingViewModel: ObservableObject {
     // MARK: - Dependencies
     
     private var storeManager: StoreManager?
-    private let trialManager = FreeMinutesTrialManager.shared
+    private let trialManager = FreeTrialManager.shared
     private let audioService = AudioService()
     private let transcriptionService = TranscriptionService()
     
@@ -41,6 +42,8 @@ class RecordingViewModel: ObservableObject {
     // MARK: - Public Methods
     
     func toggleRecording() async {
+        guard !isProcessing else { return }
+        
         if isRecording {
             await stopRecording()
         } else {
@@ -51,12 +54,10 @@ class RecordingViewModel: ObservableObject {
     // MARK: - Private Methods
     
     private func startRecording() async {
-        // Check premium + trial status BEFORE starting recording
         let isPremium = storeManager?.isPremium ?? false
         let isEligible = await checkEligibility(isPremium: isPremium)
         
         if !isEligible {
-            // Trial exhausted - show paywall before recording
             shouldShowPaywall = true
             paywallReason = "trial_exhausted"
             return
@@ -90,30 +91,124 @@ class RecordingViewModel: ObservableObject {
             return
         }
 
+        guard FileManager.default.fileExists(atPath: audioURL.path) else {
+            errorMessage = "Recording file not found"
+            isProcessing = false
+            statusText = "Tap to record"
+            return
+        }
+
         let duration = audioService.getAudioDuration(url: audioURL)
+        
+        guard duration > 0 else {
+            errorMessage = "Recording is empty"
+            audioService.cleanupAudioFile(url: audioURL)
+            isProcessing = false
+            statusText = "Tap to record"
+            return
+        }
+        
         let isPremium = storeManager?.isPremium ?? false
 
-        // Proceed with transcription (eligibility already checked in startRecording)
+        await performTranscriptionWithTrialManagement(
+            audioURL: audioURL,
+            duration: duration,
+            isPremium: isPremium
+        )
+
+        audioService.cleanupAudioFile(url: audioURL)
+    }
+    
+    private func performTranscriptionWithTrialManagement(
+        audioURL: URL,
+        duration: TimeInterval,
+        isPremium: Bool
+    ) async {
+        if isPremium {
+            await transcribeAndSave(audioURL: audioURL, duration: duration, isPremium: true, reservation: nil as TrialReservation?)
+            return
+        }
+
+        let reservationResult = await trialManager.reserveTrialIfEligible(isPremium: isPremium)
+
+        switch reservationResult {
+        case .premium:
+            await transcribeAndSave(audioURL: audioURL, duration: duration, isPremium: true, reservation: nil as TrialReservation?)
+
+        case .denied:
+            await transcribeAndSave(audioURL: audioURL, duration: duration, isPremium: false, reservation: nil as TrialReservation?)
+            shouldShowPaywall = true
+            paywallReason = "trial_exhausted"
+
+        case .reserved(let reservation, _):
+            do {
+                let transcribedText = try await transcriptionService.transcribe(audioURL: audioURL)
+
+                let trimmedText = transcribedText.trimmingCharacters(in: .whitespacesAndNewlines)
+
+                if trimmedText.isEmpty {
+                    _ = await trialManager.rollbackTrialReservation(reservation.id)
+                    errorMessage = "Transcription vide, aucun essai consommé"
+                    statusText = "Tap to record"
+                    isProcessing = false
+                    return
+                }
+
+                _ = await trialManager.commitTrialReservation(reservation.id)
+
+                currentTranscription = Transcription(text: trimmedText, audioURL: audioURL, duration: duration)
+                transcriptionComplete = true
+                statusText = "Tap to record"
+
+                await updateRemainingTrialCount()
+
+            } catch {
+                _ = await trialManager.rollbackTrialReservation(reservation.id)
+                errorMessage = "Transcription failed: \(error.localizedDescription)"
+                statusText = "Tap to record"
+            }
+
+            isProcessing = false
+        }
+    }
+    
+    private func transcribeAndSave(
+        audioURL: URL,
+        duration: TimeInterval,
+        isPremium: Bool,
+        reservation: TrialReservation?
+    ) async {
         do {
             let transcribedText = try await transcriptionService.transcribe(audioURL: audioURL)
-            currentTranscription = Transcription(text: transcribedText, audioURL: audioURL, duration: duration)
+            let trimmedText = transcribedText.trimmingCharacters(in: .whitespacesAndNewlines)
+
+            if trimmedText.isEmpty {
+                if let reservation = reservation {
+                    _ = await trialManager.rollbackTrialReservation(reservation.id)
+                }
+                errorMessage = "Transcription vide"
+                statusText = "Tap to record"
+                isProcessing = false
+                return
+            }
+
+            currentTranscription = Transcription(text: trimmedText, audioURL: audioURL, duration: duration)
             transcriptionComplete = true
             statusText = "Tap to record"
-            
-            // Consume trial transcription if not premium
+
             if !isPremium {
-                _ = await trialManager.consumeTranscription(duration: duration, isPremium: isPremium)
+                await updateRemainingTrialCount()
             }
-            
-            // Update remaining trial count
-            await updateRemainingTrialCount()
+
         } catch {
-            errorMessage = "Transcription failed"
+            if let reservation = reservation {
+                _ = await trialManager.rollbackTrialReservation(reservation.id)
+            }
+            errorMessage = "Transcription failed: \(error.localizedDescription)"
             statusText = "Tap to record"
         }
 
         isProcessing = false
-        audioService.cleanupAudioFile(url: audioURL)
     }
     
     private func checkEligibility(isPremium: Bool) async -> Bool {
@@ -123,19 +218,6 @@ class RecordingViewModel: ObservableObject {
         
         let snapshot = await trialManager.loadSnapshot()
         return snapshot.hasRemainingTranscriptions
-    }
-    
-    private func checkTranscriptionEligibility(duration: TimeInterval, isPremium: Bool) async -> Bool {
-        if isPremium {
-            return true
-        }
-        
-        let (canTranscribe, _) = await trialManager.checkAndConsumeIfEligible(
-            duration: duration,
-            isPremium: isPremium
-        )
-        
-        return canTranscribe
     }
     
     private func updateRemainingTrialCount() async {

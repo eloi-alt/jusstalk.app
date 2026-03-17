@@ -4,6 +4,7 @@
 // Root view that manages onboarding state and redirects to the appropriate flow.
 
 import SwiftUI
+import AVFoundation
 
 // MARK: - RootView
 
@@ -20,15 +21,25 @@ struct RootView: View {
                 OnboardingFlowView(
                     onFinish: {
                         hasCompletedOnboarding = true
+                        requestMicrophonePermission()
                     },
                     onPurchaseComplete: {
                         hasCompletedOnboarding = true
+                        requestMicrophonePermission()
                     }
                 )
             }
         }
         .onAppear {
             appState.storeManager = storeManager
+        }
+    }
+    
+    private func requestMicrophonePermission() {
+        AVAudioSession.sharedInstance().requestRecordPermission { granted in
+            #if DEBUG
+            print("[RootView] Microphone permission requested: \(granted)")
+            #endif
         }
     }
 }
