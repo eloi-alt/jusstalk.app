@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; connect-src 'none';">
+    <title>Jusstalk — Turn Your Voice Into Text Instantly</title>
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="1.jpg">
+    <link rel="preload" as="image" href="2.jpg">
+    <link rel="preload" as="image" href="3.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8b5cf6', // Violet-500
+                        secondary: '#ec4899', // Pink-500
+                        surface: '#f9fafb', // Gray-50
+                        surfaceHover: '#f3f4f6', // Gray-100
+                        textMain: '#111827', // Gray-900
+                        textMuted: '#6b7280', // Gray-500
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 0 40px -10px rgba(139, 92, 246, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            background-color: #ffffff;
+            color: #111827;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+            border-radius: 50%;
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        img.screenshot {
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Image protection */
+        img {
+            -webkit-user-drag: none;
+            user-drag: none;
+            -webkit-user-select: none;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* Re-enable pointer events for links containing images */
+        a img,
+        button img {
+            pointer-events: auto;
+        }
+
+        /* Mobile-optimized screenshots */
+        @media (max-width: 767px) {
+            .hero-screenshots {
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+                align-items: flex-end;
+                padding: 0 8px;
+            }
+
+            .hero-screenshots>div {
+                flex: 0 0 auto;
+            }
+
+            .hero-screenshots img.screenshot {
+                border-radius: 16px;
+                max-width: none;
+                width: 110px;
+            }
+
+            .hero-screenshots .hero-img-side {
+                width: 100px;
+                opacity: 0.9;
+                transform: translateY(10px);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero-screenshots img.screenshot {
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-900">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <img src="icon_small.jpg" alt="Jusstalk Logo" class="w-10 h-10 rounded-xl shadow-sm" width="40"
+                    height="40" decoding="async" data-i18n="logo_alt" data-i18n-attr="alt">
+                <span class="font-bold text-xl tracking-tight text-gray-900">Jusstalk</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="#features" class="hover:text-primary transition-colors" data-i18n="nav_features">Features</a>
+                <a href="#faq" class="hover:text-primary transition-colors" data-i18n="nav_support">Support</a>
+                <a href="https://apps.apple.com/us/app/jusstalk/id6759188404" target="_blank" rel="noopener noreferrer"
+                    class="bg-black text-white px-5 py-2.5 rounded-full hover:bg-gray-800 transition-colors font-semibold shadow-lg shadow-gray-200"
+                    data-i18n="nav_download">
+                    Download
+                </a>
+            </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-6 py-4 flex flex-col gap-4 text-sm font-medium text-gray-600">
+                <a href="#features" class="hover:text-primary transition-colors" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Features</a>
+                <a href="#faq" class="hover:text-primary transition-colors" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Support</a>
+                <a href="https://apps.apple.com/us/app/jusstalk/id6759188404" target="_blank" rel="noopener noreferrer" class="bg-black text-white px-5 py-2.5 rounded-full hover:bg-gray-800 transition-colors font-semibold text-center" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Download</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-40 pb-20 overflow-hidden">
+        <!-- Background Blobs -->
+        <div class="blob bg-purple-200 w-96 h-96 top-0 -left-20"></div>
+        <div class="blob bg-pink-100 w-96 h-96 bottom-0 -right-20"></div>
+
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-gray-200 text-xs font-semibold text-primary mb-6 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-primary"></span>
+                    <span data-i18n="hero_badge">Now Available on App Store</span>
+                </div>
+
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight text-gray-900">
+                    <span data-i18n="hero_title_1">Your voice,</span> <br>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+                        data-i18n="hero_title_2">beautifully transcribed.</span>
+                </h1>
+
+                <p class="text-lg md:text-xl text-gray-500 mb-10 leading-relaxed max-w-2xl mx-auto"
+                    data-i18n="hero_subtitle">
+                    Transform recordings into perfect text with Jusstalk. The native iOS app designed for speed,
+                    privacy, and accuracy.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="https://apps.apple.com/us/app/jusstalk/id6759188404" target="_blank" rel="noopener noreferrer"
+                        class="flex items-center gap-3 bg-black text-white px-8 py-4 rounded-2xl font-semibold hover:bg-gray-900 transition-all hover:scale-105 shadow-xl shadow-gray-200">
+
+                        <span data-i18n="cta_download">Download on App Store</span>
+                    </a>
+                    <a href="#features"
+                        class="px-8 py-4 rounded-2xl font-semibold text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
+                        data-i18n="cta_learn_more">
+                        Learn more &darr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Image Showcase -->
+            <div class="hero-screenshots relative mt-12 grid grid-cols-3 gap-3 md:gap-8 items-end justify-center">
+                <div class="transform md:translate-y-16 transition-transform hover:-translate-y-2 duration-500">
+                    <img src="1.jpg" alt="Recording" class="screenshot hero-img-side w-full mx-auto" width="554"
+                        height="1200" decoding="async">
+                </div>
+                <div class="z-10 transition-transform hover:-translate-y-4 duration-500">
+                    <img src="2.jpg" alt="Transcription" class="screenshot w-full mx-auto shadow-2xl shadow-purple-200"
+                        width="554" height="1200" decoding="async">
+                </div>
+                <div class="transform md:translate-y-16 transition-transform hover:-translate-y-2 duration-500">
+                    <img src="3.jpg" alt="Export" class="screenshot hero-img-side w-full mx-auto" width="554"
+                        height="1200" decoding="async">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-surface">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-i18n="features_title">Everything
+                    needed for effortless transcription.</h2>
+                <p class="text-gray-500 text-lg" data-i18n="features_subtitle">Powerful features wrapped in a simple,
+                    intuitive design.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-soft feature-card">
+                    <div class="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900" data-i18n="feat_1_title">One-Tap Recording</h3>
+                    <p class="text-gray-500 leading-relaxed" data-i18n="feat_1_desc">Instantly start capturing with a
+                        single tap. Designed for those spontaneous moments of inspiration.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-soft feature-card">
+                    <div class="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900" data-i18n="feat_2_title">Mistral AI Power</h3>
+                    <p class="text-gray-500 leading-relaxed" data-i18n="feat_2_desc">Leverages
+                        Voxtral-Mini-Transcribe-2507 to deliver industry-leading accuracy in multiple languages.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-soft feature-card">
+                    <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900" data-i18n="feat_3_title">Universal Export</h3>
+                    <p class="text-gray-500 leading-relaxed" data-i18n="feat_3_desc">Share as PDF, Markdown, JSON, HTML,
+                        or CSV. Seamlessly integrates with your workflow.</p>
+                </div>
+            </div>
+
+            <!-- Bento Grid Extra Features -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div
+                    class="bg-white p-8 rounded-3xl border border-gray-100 shadow-soft flex flex-col md:flex-row items-center gap-8 feature-card">
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900" data-i18n="feat_4_title">Smart Formatting</h3>
+                        <p class="text-gray-500 leading-relaxed" data-i18n="feat_4_desc">Jusstalk doesn't just
+                            transcribe; it formats. It turns ramblings into structured notes with headings and bullet
+                            points.</p>
+                    </div>
+                    <div class="flex-shrink-0 w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center">
+                        <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white p-8 rounded-3xl border border-gray-100 shadow-soft flex flex-col md:flex-row items-center gap-8 feature-card">
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold mb-3 text-gray-900" data-i18n="feat_5_title">Privacy First</h3>
+                        <p class="text-gray-500 leading-relaxed" data-i18n="feat_5_desc">Your data is yours. Audio is
+                            processed ephemerally and never stored on our servers. Local storage only.</p>
+                    </div>
+                    <div class="flex-shrink-0 w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center">
+                        <svg class="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-white">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center text-gray-900" data-i18n="faq_title">Frequently Asked
+                Questions</h2>
+
+            <div class="space-y-4">
+                <details class="group bg-surface rounded-2xl">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-gray-900 hover:text-primary transition-colors">
+                        <span data-i18n="faq_1_q">How do I start recording?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                                width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-500 px-6 pb-6 pt-0 leading-relaxed" data-i18n="faq_1_a">
+                        Tap the microphone button to start, tap again to stop. Your transcription will appear
+                        automatically within seconds.
+                    </div>
+                </details>
+
+                <details class="group bg-surface rounded-2xl">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-gray-900 hover:text-primary transition-colors">
+                        <span data-i18n="faq_2_q">What languages are supported?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                                width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-500 px-6 pb-6 pt-0 leading-relaxed" data-i18n="faq_2_a">
+                        Voxtral-Mini primarily supports English and major languages. For the best results, please speak
+                        clearly and avoid heavy background noise.
+                    </div>
+                </details>
+
+                <details class="group bg-surface rounded-2xl">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-gray-900 hover:text-primary transition-colors">
+                        <span data-i18n="faq_3_q">Is my data private?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                                width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-500 px-6 pb-6 pt-0 leading-relaxed" data-i18n="faq_3_a">
+                        Yes. Audio is sent to Mistral AI only for transcription and is deleted immediately after
+                        processing. We do not store your audio recordings on any server.
+                    </div>
+                </details>
+
+                <details class="group bg-surface rounded-2xl">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none p-6 text-gray-900 hover:text-primary transition-colors">
+                        <span data-i18n="faq_4_q">Can I export to PDF?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                                width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="text-gray-500 px-6 pb-6 pt-0 leading-relaxed" data-i18n="faq_4_a">
+                        Yes! We support TXT, Markdown, JSON, PDF, HTML, CSV, and more. You can set your default
+                        preference in Settings.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-100 py-16">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-12">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <img src="icon_small.jpg" alt="Logo" class="w-8 h-8 rounded-lg shadow-sm" width="32" height="32"
+                        decoding="async">
+                    <span class="font-bold text-lg text-gray-900">Jusstalk</span>
+                </div>
+                <p class="text-gray-500 text-sm max-w-xs leading-relaxed" data-i18n="footer_desc">
+                    Transform your voice into text instantly. Built for privacy, speed, and accuracy on iOS.
+                </p>
+                <div class="mt-8 flex gap-4 text-gray-400">
+                    <a href="https://x.com/lxucan" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-primary transition-colors">
+                        <span class="sr-only" data-i18n="twitter_sr_only">Twitter</span>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-16 text-sm">
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4" data-i18n="footer_legal">Legal</h4>
+                    <ul class="space-y-3 text-gray-500">
+                        <li><a href="#" class="hover:text-primary transition-colors" data-i18n="footer_privacy">Privacy
+                                Policy</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors" data-i18n="footer_terms">Terms of
+                                Service</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors"
+                                data-i18n="footer_licenses">Licenses</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4" data-i18n="footer_product">Product</h4>
+                    <ul class="space-y-3 text-gray-500">
+                        <li><a href="#" class="hover:text-primary transition-colors" data-i18n="nav_support">Support</a>
+                        </li>
+                        <li><a href="#" class="hover:text-primary transition-colors" data-i18n="footer_press">Press
+                                Kit</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-6 mt-16 pt-8 border-t border-gray-100 text-center text-sm text-gray-400">
+            &copy; 2026 Jusstalk. <span data-i18n="footer_rights">All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Translations Script -->
+    <script>
+        const translations = {
+            en: {
+                nav_features: "Features",
+                nav_support: "Support",
+                nav_download: "Download",
+                hero_badge: "Now Available on App Store",
+                hero_title_1: "Your voice,",
+                hero_title_2: "beautifully transcribed.",
+                hero_subtitle: "Transform recordings into perfect text with Jusstalk. The native iOS app designed for speed, privacy, and accuracy.",
+                logo_alt: "Jusstalk Logo",
+                twitter_sr_only: "Twitter",
+                cta_download: "Download on App Store",
+                cta_learn_more: "Learn more ↓",
+                features_title: "Everything needed for effortless transcription.",
+                features_subtitle: "Powerful features wrapped in a simple, intuitive design.",
+                feat_1_title: "One-Tap Recording",
+                feat_1_desc: "Instantly start capturing with a single tap. Designed for those spontaneous moments of inspiration.",
+                feat_2_title: "Mistral AI Power",
+                feat_2_desc: "Leverages Voxtral-Mini-Transcribe-2507 to deliver industry-leading accuracy in multiple languages.",
+                feat_3_title: "Universal Export",
+                feat_3_desc: "Share as PDF, Markdown, JSON, HTML, or CSV. Seamlessly integrates with your workflow.",
+                feat_4_title: "Smart Formatting",
+                feat_4_desc: "Jusstalk doesn't just transcribe; it formats. It turns ramblings into structured notes with headings and bullet points.",
+                feat_5_title: "Privacy First",
+                feat_5_desc: "Your data is yours. Audio is processed ephemerally and never stored on our servers. Local storage only.",
+                faq_title: "Frequently Asked Questions",
+                faq_1_q: "How do I start recording?",
+                faq_1_a: "Tap the microphone button to start, tap again to stop. Your transcription will appear automatically within seconds.",
+                faq_2_q: "What languages are supported?",
+                faq_2_a: "Voxtral-Mini primarily supports English and major languages. For the best results, please speak clearly and avoid heavy background noise.",
+                faq_3_q: "Is my data private?",
+                faq_3_a: "Yes. Audio is sent to Mistral AI only for transcription and is deleted immediately after processing. We do not store your audio recordings on any server.",
+                faq_4_q: "Can I export to PDF?",
+                faq_4_a: "Yes! We support TXT, Markdown, JSON, PDF, HTML, CSV, and more. You can set your default preference in Settings.",
+                footer_desc: "Transform your voice into text instantly. Built for privacy, speed, and accuracy on iOS.",
+                footer_legal: "Legal",
+                footer_privacy: "Privacy Policy",
+                footer_terms: "Terms of Service",
+                footer_licenses: "Licenses",
+                footer_product: "Product",
+                footer_press: "Press Kit",
+                footer_rights: "All rights reserved."
+            },
+            fr: {
+                nav_features: "Fonctionnalités",
+                nav_support: "Support",
+                nav_download: "Télécharger",
+                hero_badge: "Disponible sur l'App Store",
+                hero_title_1: "Votre voix,",
+                hero_title_2: "parfaitement transcrite.",
+                hero_subtitle: "Transformez vos enregistrements en texte impeccable avec Jusstalk. L'application iOS native conçue pour la rapidité, la confidentialité et la précision.",
+                logo_alt: "Logo Jusstalk",
+                twitter_sr_only: "Twitter",
+                cta_download: "Télécharger sur l'App Store",
+                cta_learn_more: "En savoir plus ↓",
+                features_title: "Tout pour une transcription sans effort.",
+                features_subtitle: "Des fonctionnalités puissantes dans un design simple et intuitif.",
+                feat_1_title: "Enregistrement en un clic",
+                feat_1_desc: "Commencez à capturer instantanément d'un simple toucher. Conçu pour ces moments d'inspiration spontanée.",
+                feat_2_title: "Puissance de Mistral AI",
+                feat_2_desc: "Utilise Voxtral-Mini-Transcribe-2507 pour offrir une précision de pointe dans plusieurs langues.",
+                feat_3_title: "Export universel",
+                feat_3_desc: "Partagez en PDF, Markdown, JSON, HTML ou CSV. S'intègre parfaitement à votre flux de travail.",
+                feat_4_title: "Formatage intelligent",
+                feat_4_desc: "Jusstalk ne fait pas que transcrire, il formate. Il transforme vos idées en notes structurées avec titres et puces.",
+                feat_5_title: "Confidentialité avant tout",
+                feat_5_desc: "Vos données vous appartiennent. L'audio est traité de manière éphémère et jamais stocké sur nos serveurs.",
+                faq_title: "Questions fréquentes",
+                faq_1_q: "Comment commencer l'enregistrement ?",
+                faq_1_a: "Appuyez sur le micro pour commencer, appuyez à nouveau pour arrêter. Votre transcription apparaîtra automatiquement.",
+                faq_2_q: "Quelles langues sont supportées ?",
+                faq_2_a: "Voxtral-Mini supporte principalement l'anglais et les langues majeures. Parlez clairement pour de meilleurs résultats.",
+                faq_3_q: "Mes données sont-elles privées ?",
+                faq_3_a: "Oui. L'audio n'est envoyé à Mistral AI que pour la transcription et est supprimé immédiatement après.",
+                faq_4_q: "Puis-je exporter en PDF ?",
+                faq_4_a: "Oui ! Nous supportons TXT, Markdown, JSON, PDF, HTML, CSV, et plus encore.",
+                footer_desc: "Transformez votre voix en texte instantanément. Conçu pour la confidentialité et la précision sur iOS.",
+                footer_legal: "Légal",
+                footer_privacy: "Confidentialité",
+                footer_terms: "Conditions d'utilisation",
+                footer_licenses: "Licences",
+                footer_product: "Produit",
+                footer_press: "Kit Presse",
+                footer_rights: "Tous droits réservés.",
+                logo_alt: "Logo Jusstalk",
+                twitter_sr_only: "Twitter"
+            },
+            es: {
+                nav_features: "Funciones",
+                nav_support: "Soporte",
+                nav_download: "Descargar",
+                hero_badge: "Disponible en App Store",
+                hero_title_1: "Tu voz,",
+                hero_title_2: "perfectamente transcrita.",
+                hero_subtitle: "Transforma grabaciones en texto perfecto con Jusstalk. La app nativa de iOS diseñada para velocidad, privacidad y precisión.",
+                cta_download: "Descargar en App Store",
+                cta_learn_more: "Saber más ↓",
+                features_title: "Todo para una transcripción sin esfuerzo.",
+                features_subtitle: "Potentes funciones en un diseño simple e intuitivo.",
+                feat_1_title: "Grabación con un toque",
+                feat_1_desc: "Empieza a capturar al instante con un solo toque. Diseñado para momentos de inspiración espontánea.",
+                feat_2_title: "Poder de Mistral AI",
+                feat_2_desc: "Aprovecha Voxtral-Mini-Transcribe-2507 para ofrecer una precisión líder en la industria en múltiples idiomas.",
+                feat_3_title: "Exportación universal",
+                feat_3_desc: "Comparte como PDF, Markdown, JSON, HTML o CSV. Se integra perfectamente con tu flujo de trabajo.",
+                feat_4_title: "Formato inteligente",
+                feat_4_desc: "Jusstalk no solo transcribe, da formato. Convierte tus ideas en notas estructuradas con títulos y viñetas.",
+                feat_5_title: "Privacidad primero",
+                feat_5_desc: "Tus datos son tuyos. El audio se procesa de forma efímera y nunca se almacena en nuestros servidores.",
+                faq_title: "Preguntas frecuentes",
+                faq_1_q: "¿Cómo empiezo a grabar?",
+                faq_1_a: "Toca el micrófono para empezar, toca de nuevo para parar. Tu transcripción aparecerá automáticamente.",
+                faq_2_q: "¿Qué idiomas son compatibles?",
+                faq_2_a: "Voxtral-Mini soporta principalmente inglés e idiomas principales. Habla claro para mejores resultados.",
+                faq_3_q: "¿Son privados mis datos?",
+                faq_3_a: "Sí. El audio se envía a Mistral AI solo para transcripción y se elimina inmediatamente después.",
+                faq_4_q: "¿Puedo exportar a PDF?",
+                faq_4_a: "¡Sí! Soportamos TXT, Markdown, JSON, PDF, HTML, CSV y más.",
+                footer_desc: "Transforma tu voz en texto al instante. Diseñado para privacidad y precisión en iOS.",
+                footer_legal: "Legal",
+                footer_privacy: "Privacidad",
+                footer_terms: "Términos de servicio",
+                footer_licenses: "Licencias",
+                footer_product: "Producto",
+                footer_press: "Kit de prensa",
+                footer_rights: "Todos los derechos reservados."
+            }
+        };
+
+        function setLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (el.dataset.i18nAttr) {
+                        el.setAttribute(el.dataset.i18nAttr, translations[lang][key]);
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+            document.documentElement.lang = lang;
+            localStorage.setItem('lxucan_lang', lang);
+        }
+
+        // Load saved language or detect
+        const savedLang = localStorage.getItem('lxucan_lang');
+        if (savedLang && translations[savedLang]) {
+            setLanguage(savedLang);
+        } else {
+            const userLang = navigator.language || navigator.userLanguage;
+            const twoCharLang = userLang.split('-')[0];
+            if (translations[twoCharLang]) {
+                setLanguage(twoCharLang);
+            } else {
+                setLanguage('en');
+            }
+        }
+    </script>
+
+    <!-- Image protection -->
+    <script>
+        // Block right-click on images
+        document.addEventListener('contextmenu', function (e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+                return false;
+            }
+        });
+        // Block drag on images
+        document.addEventListener('dragstart', function (e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
+</body>
+
+</html>

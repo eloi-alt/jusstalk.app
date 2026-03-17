@@ -1,0 +1,431 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 63;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		152363866DC5E3FD5DBC44FC /* TextProcessingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958BC3E43023AE562C4229F /* TextProcessingService.swift */; };
+		171E6670ED15A27F20413746 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7AAD9C273FF7F5D754727E /* KeychainManager.swift */; };
+		22B3545B453B474E8408F540 /* JusstalkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBA00637E69211E86990F3 /* JusstalkApp.swift */; };
+		2F3DADAB0FEF629813BE3C1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0541AAEA716303D352682F /* ContentView.swift */; };
+		37670B9CE72FD4E774916139 /* LastRecordingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C4E97E04D787EEC73A421 /* LastRecordingManager.swift */; };
+		382A242CABE9DE4AC40077FA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE070C698722EEBD77E7472 /* Config.swift */; };
+		45DC2168F42BDE386B69911B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C7AF0B7F1ABBDB83BA2CCF0 /* LaunchScreen.storyboard */; };
+		67E15F7409ED52FEB4D2958D /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D491E7C5D730A3589CC487E9 /* RecordingViewModel.swift */; };
+		74B5FACF3E5F11EBE48D5E66 /* LegalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC022548A11E15975C5544D /* LegalContent.swift */; };
+		795E08102CD3C3231D077F05 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE5D746D37C4F9E1554C7B0 /* Models.swift */; };
+		87E0A749320A50F1F93E0F10 /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930FCF5AF8CAF1F2C59B64AC /* ExportService.swift */; };
+		8F84BDFA636618C41F84F542 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 951F8B224EB42B70F2357B32 /* Assets.xcassets */; };
+		A054B8D06DEC1CF1D92A353F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645AA94BE2E242CEB7C70FE5 /* SettingsView.swift */; };
+		C28F988C512EB4EF5272D6C2 /* TranscriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54186749D2D14625799AC8B7 /* TranscriptionViewModel.swift */; };
+		CA4FEA639A455B13EE4C5026 /* TranscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8CE43AB45D8E92860BA41D /* TranscriptionView.swift */; };
+		D3F67679DC7E9331BDDD9F81 /* TranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69330308DE314883EA78B61C /* TranscriptionService.swift */; };
+		E608E28D7EBB241287277D4C /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DA736FFC5EE68E6E04E158 /* AudioService.swift */; };
+		F46D656A34577B0F32C668B3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = EE749AC1495DF6E0FF4D1C57 /* PrivacyInfo.xcprivacy */; };
+		FC30B9A6C56A47B45E5AF11D /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2EDEA5774BAA0B108A31DD /* ShareSheet.swift */; };
+		FE22A4F27168F31C5E54C525 /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B515FDB33927B6893F0B141E /* DownloadView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0A2C4E97E04D787EEC73A421 /* LastRecordingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastRecordingManager.swift; sourceTree = "<group>"; };
+		0E0541AAEA716303D352682F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1EE5D746D37C4F9E1554C7B0 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		2A2EDEA5774BAA0B108A31DD /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		51706EBD964F2AFD623E8F8D /* Jusstalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jusstalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		54186749D2D14625799AC8B7 /* TranscriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionViewModel.swift; sourceTree = "<group>"; };
+		55DA736FFC5EE68E6E04E158 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		645AA94BE2E242CEB7C70FE5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		69330308DE314883EA78B61C /* TranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionService.swift; sourceTree = "<group>"; };
+		6EC022548A11E15975C5544D /* LegalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalContent.swift; sourceTree = "<group>"; };
+		8958BC3E43023AE562C4229F /* TextProcessingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextProcessingService.swift; sourceTree = "<group>"; };
+		8D7AAD9C273FF7F5D754727E /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		930FCF5AF8CAF1F2C59B64AC /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
+		951F8B224EB42B70F2357B32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9C7AF0B7F1ABBDB83BA2CCF0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B515FDB33927B6893F0B141E /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
+		D491E7C5D730A3589CC487E9 /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
+		E2CBA00637E69211E86990F3 /* JusstalkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JusstalkApp.swift; sourceTree = "<group>"; };
+		EDE070C698722EEBD77E7472 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		EE749AC1495DF6E0FF4D1C57 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		FF8CE43AB45D8E92860BA41D /* TranscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		054D8FEC6D294F423AF0631E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				EDE070C698722EEBD77E7472 /* Config.swift */,
+				8D7AAD9C273FF7F5D754727E /* KeychainManager.swift */,
+				0A2C4E97E04D787EEC73A421 /* LastRecordingManager.swift */,
+				6EC022548A11E15975C5544D /* LegalContent.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		0D1DF70AFA4092D620553E1B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1EE5D746D37C4F9E1554C7B0 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3C8FBB08F6B4717B7BDD8BBF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				55DA736FFC5EE68E6E04E158 /* AudioService.swift */,
+				930FCF5AF8CAF1F2C59B64AC /* ExportService.swift */,
+				8958BC3E43023AE562C4229F /* TextProcessingService.swift */,
+				69330308DE314883EA78B61C /* TranscriptionService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8EC129B9D0C1422446083556 = {
+			isa = PBXGroup;
+			children = (
+				CF381751C9233A6876F1FE8D /* Resources */,
+				B6BF60E934FAC76447ACBB5B /* Sources */,
+				B6CD06E9AF875A4142C18D7B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B6BF60E934FAC76447ACBB5B /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				E2CBA00637E69211E86990F3 /* JusstalkApp.swift */,
+				0D1DF70AFA4092D620553E1B /* Models */,
+				3C8FBB08F6B4717B7BDD8BBF /* Services */,
+				054D8FEC6D294F423AF0631E /* Utilities */,
+				C21B3029401EF341F48AFF50 /* ViewModels */,
+				CD06F1F722E986C39CB11D0F /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		B6CD06E9AF875A4142C18D7B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				51706EBD964F2AFD623E8F8D /* Jusstalk.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C21B3029401EF341F48AFF50 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D491E7C5D730A3589CC487E9 /* RecordingViewModel.swift */,
+				54186749D2D14625799AC8B7 /* TranscriptionViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CD06F1F722E986C39CB11D0F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0E0541AAEA716303D352682F /* ContentView.swift */,
+				B515FDB33927B6893F0B141E /* DownloadView.swift */,
+				645AA94BE2E242CEB7C70FE5 /* SettingsView.swift */,
+				2A2EDEA5774BAA0B108A31DD /* ShareSheet.swift */,
+				FF8CE43AB45D8E92860BA41D /* TranscriptionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CF381751C9233A6876F1FE8D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				951F8B224EB42B70F2357B32 /* Assets.xcassets */,
+				9C7AF0B7F1ABBDB83BA2CCF0 /* LaunchScreen.storyboard */,
+				EE749AC1495DF6E0FF4D1C57 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		122EA2DF1FC507BCBEEC062C /* Jusstalk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DF4645525A8BC33CF4D96A9 /* Build configuration list for PBXNativeTarget "Jusstalk" */;
+			buildPhases = (
+				D7580A1F551B8A2BC9AC8D75 /* Sources */,
+				53C042A931C125AB8BA94719 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Jusstalk;
+			packageProductDependencies = (
+			);
+			productName = Jusstalk;
+			productReference = 51706EBD964F2AFD623E8F8D /* Jusstalk.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C098B5840F97C5F99858EF5F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					122EA2DF1FC507BCBEEC062C = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = B83B73E21D5E1C91E6F013DA /* Build configuration list for PBXProject "Jusstalk" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 8EC129B9D0C1422446083556;
+			minimizedProjectReferenceProxies = 1;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				122EA2DF1FC507BCBEEC062C /* Jusstalk */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		53C042A931C125AB8BA94719 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F84BDFA636618C41F84F542 /* Assets.xcassets in Resources */,
+				45DC2168F42BDE386B69911B /* LaunchScreen.storyboard in Resources */,
+				F46D656A34577B0F32C668B3 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D7580A1F551B8A2BC9AC8D75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E608E28D7EBB241287277D4C /* AudioService.swift in Sources */,
+				382A242CABE9DE4AC40077FA /* Config.swift in Sources */,
+				2F3DADAB0FEF629813BE3C1D /* ContentView.swift in Sources */,
+				FE22A4F27168F31C5E54C525 /* DownloadView.swift in Sources */,
+				87E0A749320A50F1F93E0F10 /* ExportService.swift in Sources */,
+				22B3545B453B474E8408F540 /* JusstalkApp.swift in Sources */,
+				171E6670ED15A27F20413746 /* KeychainManager.swift in Sources */,
+				37670B9CE72FD4E774916139 /* LastRecordingManager.swift in Sources */,
+				74B5FACF3E5F11EBE48D5E66 /* LegalContent.swift in Sources */,
+				795E08102CD3C3231D077F05 /* Models.swift in Sources */,
+				67E15F7409ED52FEB4D2958D /* RecordingViewModel.swift in Sources */,
+				A054B8D06DEC1CF1D92A353F /* SettingsView.swift in Sources */,
+				FC30B9A6C56A47B45E5AF11D /* ShareSheet.swift in Sources */,
+				152363866DC5E3FD5DBC44FC /* TextProcessingService.swift in Sources */,
+				D3F67679DC7E9331BDDD9F81 /* TranscriptionService.swift in Sources */,
+				CA4FEA639A455B13EE4C5026 /* TranscriptionView.swift in Sources */,
+				C28F988C512EB4EF5272D6C2 /* TranscriptionViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0D66D0B5A14B99F0AC129CE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = M467H6N2WC;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jusstalk.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		77C93635C4FA5108E9216678 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.00.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		8580EEB0F8E33B69EAF01DCD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = M467H6N2WC;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jusstalk.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DB9C72616827300361AE591F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.00.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9DF4645525A8BC33CF4D96A9 /* Build configuration list for PBXNativeTarget "Jusstalk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8580EEB0F8E33B69EAF01DCD /* Debug */,
+				0D66D0B5A14B99F0AC129CE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B83B73E21D5E1C91E6F013DA /* Build configuration list for PBXProject "Jusstalk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77C93635C4FA5108E9216678 /* Debug */,
+				DB9C72616827300361AE591F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C098B5840F97C5F99858EF5F /* Project object */;
+}
