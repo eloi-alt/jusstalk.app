@@ -3,14 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		07A48178D77DE6742AF1A81A /* APISessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ECE23C5D7B873EA8ADD4B9 /* APISessionDelegate.swift */; };
+		10F202FAE4311C24942D7B0B /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E79FE98CCC62C1423CFD1D /* PrivacyPolicyView.swift */; };
 		137A8B9DE85A4E861197155A /* TranscriptionHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D26694EB1DEDB6AADF16CF9 /* TranscriptionHistoryManager.swift */; };
 		152363866DC5E3FD5DBC44FC /* TextProcessingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8958BC3E43023AE562C4229F /* TextProcessingService.swift */; };
 		171E6670ED15A27F20413746 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7AAD9C273FF7F5D754727E /* KeychainManager.swift */; };
+		184FAAC1549CAEA88B74D4AD /* TermsOfServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765D5BC8CAF48AEF8DF9756 /* TermsOfServiceView.swift */; };
 		22B3545B453B474E8408F540 /* JusstalkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CBA00637E69211E86990F3 /* JusstalkApp.swift */; };
 		2F3DADAB0FEF629813BE3C1D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0541AAEA716303D352682F /* ContentView.swift */; };
 		37670B9CE72FD4E774916139 /* LastRecordingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C4E97E04D787EEC73A421 /* LastRecordingManager.swift */; };
@@ -23,6 +25,7 @@
 		60CBF4B94D0FDDB3D9BB8BF2 /* DemoPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B324D328D92EDC91CD58E /* DemoPageView.swift */; };
 		67E15F7409ED52FEB4D2958D /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D491E7C5D730A3589CC487E9 /* RecordingViewModel.swift */; };
 		74B5FACF3E5F11EBE48D5E66 /* LegalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC022548A11E15975C5544D /* LegalContent.swift */; };
+		775D55757C56876E452C7FF4 /* LegalSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16845C148A9CC6581374FC /* LegalSectionView.swift */; };
 		795E08102CD3C3231D077F05 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE5D746D37C4F9E1554C7B0 /* Models.swift */; };
 		87E0A749320A50F1F93E0F10 /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930FCF5AF8CAF1F2C59B64AC /* ExportService.swift */; };
 		8ABA3F8FA5C6485843FC6591 /* AnimatedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F095981BDB0EEE08823FE6 /* AnimatedBackground.swift */; };
@@ -48,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0765D5BC8CAF48AEF8DF9756 /* TermsOfServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceView.swift; sourceTree = "<group>"; };
 		098DC1F6AF9F84448191F068 /* JusstalkAppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JusstalkAppState.swift; sourceTree = "<group>"; };
 		0A2C4E97E04D787EEC73A421 /* LastRecordingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastRecordingManager.swift; sourceTree = "<group>"; };
 		0E0541AAEA716303D352682F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,14 +59,16 @@
 		1D26694EB1DEDB6AADF16CF9 /* TranscriptionHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionHistoryManager.swift; sourceTree = "<group>"; };
 		1EE5D746D37C4F9E1554C7B0 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		24E94F0E5325A528B38571B5 /* OfflineQueueProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineQueueProcessor.swift; sourceTree = "<group>"; };
+		2A16845C148A9CC6581374FC /* LegalSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalSectionView.swift; sourceTree = "<group>"; };
 		2A2EDEA5774BAA0B108A31DD /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		32F095981BDB0EEE08823FE6 /* AnimatedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedBackground.swift; sourceTree = "<group>"; };
 		4CE1D32C0D04AAB709E99E8F /* PremiumPositioningPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPositioningPageView.swift; sourceTree = "<group>"; };
 		50ECE23C5D7B873EA8ADD4B9 /* APISessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISessionDelegate.swift; sourceTree = "<group>"; };
-		51706EBD964F2AFD623E8F8D /* Jusstalk.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Jusstalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		51706EBD964F2AFD623E8F8D /* Jusstalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jusstalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54186749D2D14625799AC8B7 /* TranscriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionViewModel.swift; sourceTree = "<group>"; };
 		55DA736FFC5EE68E6E04E158 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
 		5DA9DAC076AE84A8D5DF91AB /* CTAPageJusstalkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTAPageJusstalkView.swift; sourceTree = "<group>"; };
+		63E79FE98CCC62C1423CFD1D /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		645AA94BE2E242CEB7C70FE5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		69330308DE314883EA78B61C /* TranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionService.swift; sourceTree = "<group>"; };
 		6EC022548A11E15975C5544D /* LegalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalContent.swift; sourceTree = "<group>"; };
@@ -84,7 +90,7 @@
 		DAB07B355FFA5394690EC699 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		E2CBA00637E69211E86990F3 /* JusstalkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JusstalkApp.swift; sourceTree = "<group>"; };
 		EDE070C698722EEBD77E7472 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		EE749AC1495DF6E0FF4D1C57 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		EE749AC1495DF6E0FF4D1C57 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F27480361B060EC404AD5E46 /* FreeMinutesTrialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeMinutesTrialManager.swift; sourceTree = "<group>"; };
 		FF8CE43AB45D8E92860BA41D /* TranscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +142,16 @@
 				69330308DE314883EA78B61C /* TranscriptionService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		53363FCCBB6982AF366424CB /* Legal */ = {
+			isa = PBXGroup;
+			children = (
+				2A16845C148A9CC6581374FC /* LegalSectionView.swift */,
+				63E79FE98CCC62C1423CFD1D /* PrivacyPolicyView.swift */,
+				0765D5BC8CAF48AEF8DF9756 /* TermsOfServiceView.swift */,
+			);
+			path = Legal;
 			sourceTree = "<group>";
 		};
 		5F2F2720B9904C4BA7DEF65A /* Onboarding */ = {
@@ -199,6 +215,7 @@
 				645AA94BE2E242CEB7C70FE5 /* SettingsView.swift */,
 				2A2EDEA5774BAA0B108A31DD /* ShareSheet.swift */,
 				FF8CE43AB45D8E92860BA41D /* TranscriptionView.swift */,
+				53363FCCBB6982AF366424CB /* Legal */,
 				5F2F2720B9904C4BA7DEF65A /* Onboarding */,
 				0372CE75C072D33D5CA07AF1 /* Paywall */,
 			);
@@ -246,7 +263,6 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					122EA2DF1FC507BCBEEC062C = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -261,7 +277,6 @@
 			);
 			mainGroup = 8EC129B9D0C1422446083556;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -305,6 +320,7 @@
 				171E6670ED15A27F20413746 /* KeychainManager.swift in Sources */,
 				37670B9CE72FD4E774916139 /* LastRecordingManager.swift in Sources */,
 				74B5FACF3E5F11EBE48D5E66 /* LegalContent.swift in Sources */,
+				775D55757C56876E452C7FF4 /* LegalSectionView.swift in Sources */,
 				795E08102CD3C3231D077F05 /* Models.swift in Sources */,
 				B72BBD0CAB7BA504E6FE7181 /* NetworkMonitor.swift in Sources */,
 				F3110808F2866594FEA52632 /* OfflineQueueManager.swift in Sources */,
@@ -313,11 +329,13 @@
 				AB45CE732EFA5311D0C05874 /* PaywallView.swift in Sources */,
 				5DA4793845E100B2A8E9E522 /* PendingRecording.swift in Sources */,
 				3EFC0982F157AA8C87FDA58F /* PremiumPositioningPageView.swift in Sources */,
+				10F202FAE4311C24942D7B0B /* PrivacyPolicyView.swift in Sources */,
 				67E15F7409ED52FEB4D2958D /* RecordingViewModel.swift in Sources */,
 				CF61EABB6FDAB8DB9B29019B /* RootView.swift in Sources */,
 				A054B8D06DEC1CF1D92A353F /* SettingsView.swift in Sources */,
 				FC30B9A6C56A47B45E5AF11D /* ShareSheet.swift in Sources */,
 				5CB49D5BB988C966230C98A7 /* StoreManager.swift in Sources */,
+				184FAAC1549CAEA88B74D4AD /* TermsOfServiceView.swift in Sources */,
 				152363866DC5E3FD5DBC44FC /* TextProcessingService.swift in Sources */,
 				137A8B9DE85A4E861197155A /* TranscriptionHistoryManager.swift in Sources */,
 				D3F67679DC7E9331BDDD9F81 /* TranscriptionService.swift in Sources */,
@@ -334,6 +352,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = M467H6N2WC;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -419,6 +438,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = M467H6N2WC;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

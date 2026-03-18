@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; connect-src 'none';">
+    <title>Privacy Policy — Jusstalk</title>
+    <link rel="canonical" href="https://jusstalk.app/privacy.html">
+    <meta name="robots" content="noindex">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8b5cf6',
+                        secondary: '#ec4899',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-900">
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="icon_small.jpg" alt="Jusstalk Logo" class="w-10 h-10 rounded-xl shadow-sm" width="40" height="40">
+                <span class="font-bold text-xl tracking-tight text-gray-900">Jusstalk</span>
+            </a>
+            <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="pt-28 pb-24 max-w-3xl mx-auto px-6">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
+        <p class="text-gray-500 mb-12">Last updated: March 18, 2026</p>
+
+        <h2 class="text-2xl font-bold text-gray-900 mb-4 mt-10">Overview</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">Jusstalk does not collect, store, or share personal data. No account is required to use the app.</p>
+
+        <h2 class="text-2xl font-bold text-gray-900 mb-4 mt-10">Data We Process</h2>
+        <table class="w-full border-collapse text-sm mb-4">
+            <thead>
+                <tr class="border-b border-gray-200">
+                    <th class="text-left py-3 px-4 font-semibold text-gray-900">Data</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-900">Purpose</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-900">Third Party</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-900">Retention</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b border-gray-200">
+                    <td class="py-3 px-4 text-gray-600">Audio recording</td>
+                    <td class="py-3 px-4 text-gray-600">Voice-to-text transcription</td>
+                    <td class="py-3 px-4 text-gray-600">Mistral AI (api.mistral.ai)</td>
+                    <td class="py-3 px-4 text-gray-600">Deleted immediately after transcription</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                    <td class="py-3 px-4 text-gray-600">Transcription text</td>
+                    <td class="py-3 px-4 text-gray-600">AI formatting (on user request)</td>
+                    <td class="py-3 px-4 text-gray-600">DeepSeek (api.deepseek.com)</td>
+                    <td class="py-3 px-4 text-gray-600">Processed in real-time, not stored</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                    <td class="py-3 px-4 text-gray-600">Trial usage counter</td>
+                    <td class="py-3 px-4 text-gray-600">Free trial management</td>
+                    <td class="py-3 px-4 text-gray-600">None</td>
+                    <td class="py-3 px-4 text-gray-600">Local device only (UserDefaults), cleared on app uninstall</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                    <td class="py-3 px-4 text-gray-600">In-app purchase receipt</td>
+                    <td class="py-3 px-4 text-gray-600">Purchase verification</td>
+                    <td class="py-3 px-4 text-gray-600">Apple App Store</td>
+                    <td class="py-3 px-4 text-gray-600">Handled entirely by Apple StoreKit</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="text-2xl font-bold text-gray-900 mb-4 mt-10">Third-Party Services</h2>
+        <ul class="list-disc list-inside space-y-2 text-gray-600 mb-4">
+            <li><strong>Mistral AI</strong>: <a href="https://mistral.ai/terms" class="text-primary hover:underline">https://mistral.ai/terms</a> — audio is sent via HTTPS and processed per their API terms</li>
+            <li><strong>DeepSeek</strong>: <a href="https://platform.deepseek.com/downloads/DeepSeek%20Terms%20of%20Use.html" class="text-primary hover:underline">https://platform.deepseek.com</a> — text sent only on explicit user export action</li>
+            <li><strong>Apple App Store</strong>: <a href="https://www.apple.com/legal/privacy/" class="text-primary hover:underline">https://www.apple.com/legal/privacy/</a></li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-gray-900 mb-4 mt-10">Data We Do NOT Collect</h2>
+        <ul class="list-disc list-inside space-y-2 text-gray-600 mb-4">
+            <li>No name, email, or account data</li>
+            <li>No device identifiers or advertising IDs</li>
+            <li>No location data</li>
+            <li>No analytics or crash reporting</li>
+            <li>No cookies or tracking</li>
+            <li>No data sold to third parties</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-gray-900 mb-4 mt-10">Microphone Permission</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">Jusstalk requests microphone access solely to record audio for transcription. This data is not stored beyond the transcription session.</p>
+
+        <h2 class="text-2xl font-bold text-gray-900 mb-4 mt-10">Children</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">The app is not directed at children under 13.</p>
+
+        <h2 class="text-2xl font-bold text-gray-900 mb-4 mt-10">Changes</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">We may update this policy. Continued use constitutes acceptance.</p>
+
+        <h2 class="text-2xl font-bold text-gray-900 mb-4 mt-10">Contact</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">Twitter: <a href="https://x.com/lxucan" class="text-primary hover:underline">@lxucan</a></p>
+    </main>
+
+    <footer class="bg-white border-t border-gray-100 py-12">
+        <div class="max-w-6xl mx-auto px-6 text-center text-sm text-gray-400">
+            &copy; 2026 Jusstalk. All rights reserved.
+        </div>
+    </footer>
+</body>
+
+</html>

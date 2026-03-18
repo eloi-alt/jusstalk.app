@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; connect-src 'none';">
+    <title>Open Source Licenses — Jusstalk</title>
+    <link rel="canonical" href="https://jusstalk.app/licenses.html">
+    <meta name="robots" content="noindex">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8b5cf6',
+                        secondary: '#ec4899',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-900">
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="icon_small.jpg" alt="Jusstalk Logo" class="w-10 h-10 rounded-xl shadow-sm" width="40" height="40">
+                <span class="font-bold text-xl tracking-tight text-gray-900">Jusstalk</span>
+            </a>
+            <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-primary transition-colors">Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="pt-28 pb-24 max-w-3xl mx-auto px-6">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Open Source Licenses</h1>
+        <p class="text-gray-500 mb-12">Jusstalk uses the following open source software:</p>
+
+        <table class="w-full border-collapse text-sm mb-12">
+            <thead>
+                <tr class="border-b border-gray-200">
+                    <th class="text-left py-3 px-4 font-semibold text-gray-900">Component</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-900">License</th>
+                    <th class="text-left py-3 px-4 font-semibold text-gray-900">Copyright</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b border-gray-200">
+                    <td class="py-3 px-4 text-gray-600">Voxtral-Mini-Transcribe-2507</td>
+                    <td class="py-3 px-4 text-gray-600"><a href="https://www.apache.org/licenses/LICENSE-2.0" class="text-primary hover:underline">Apache 2.0</a></td>
+                    <td class="py-3 px-4 text-gray-600">Copyright 2024 Mistral AI</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                    <td class="py-3 px-4 text-gray-600">Swift / SwiftUI</td>
+                    <td class="py-3 px-4 text-gray-600"><a href="https://www.apache.org/licenses/LICENSE-2.0" class="text-primary hover:underline">Apache 2.0</a></td>
+                    <td class="py-3 px-4 text-gray-600">Copyright 2014–2024 Apple Inc.</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                    <td class="py-3 px-4 text-gray-600">Tailwind CSS</td>
+                    <td class="py-3 px-4 text-gray-600"><a href="https://opensource.org/licenses/MIT" class="text-primary hover:underline">MIT</a></td>
+                    <td class="py-3 px-4 text-gray-600">Copyright 2020 Tailwind Labs, Inc.</td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                    <td class="py-3 px-4 text-gray-600">Inter</td>
+                    <td class="py-3 px-4 text-gray-600"><a href="https://scripts.sil.org/OFL" class="text-primary hover:underline">SIL Open Font License 1.1</a></td>
+                    <td class="py-3 px-4 text-gray-600">Copyright 2020 The Inter Project Authors</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="text-2xl font-bold text-gray-900 mb-4 mt-10">Commercial APIs</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">DeepSeek API is used under DeepSeek's commercial API terms. See <a href="https://platform.deepseek.com" class="text-primary hover:underline">https://platform.deepseek.com</a></p>
+    </main>
+
+    <footer class="bg-white border-t border-gray-100 py-12">
+        <div class="max-w-6xl mx-auto px-6 text-center text-sm text-gray-400">
+            &copy; 2026 Jusstalk. All rights reserved.
+        </div>
+    </footer>
+</body>
+
+</html>
