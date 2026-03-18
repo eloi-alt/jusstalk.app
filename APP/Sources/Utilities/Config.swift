@@ -15,7 +15,7 @@ enum Config {
         if let k = buildKey, !k.isEmpty, k != "$(MISTRAL_API_KEY)" {
             return k
         }
-        assertionFailure("[Config] MISTRAL_API_KEY not configured. Use xcconfig or Keychain.")
+        print("[Config] WARNING: MISTRAL_API_KEY not configured. Transcription will fail.")
         return ""
         #else
         if let key = Bundle.main.object(forInfoDictionaryKey: "MISTRAL_API_KEY") as? String,
@@ -38,7 +38,7 @@ enum Config {
         if let k = buildKey, !k.isEmpty, k != "$(DEEPSEEK_API_KEY)" {
             return k
         }
-        assertionFailure("[Config] DEEPSEEK_API_KEY not configured. Use xcconfig or Keychain.")
+        print("[Config] WARNING: DEEPSEEK_API_KEY not configured.")
         return ""
         #else
         if let key = Bundle.main.object(forInfoDictionaryKey: "DEEPSEEK_API_KEY") as? String,

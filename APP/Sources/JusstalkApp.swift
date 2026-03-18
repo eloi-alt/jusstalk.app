@@ -11,6 +11,7 @@ struct JusstalkApp: App {
     
     @StateObject private var appState = JusstalkAppState()
     @StateObject private var storeManager = StoreManager()
+    @StateObject private var networkMonitor = NetworkMonitor.shared
     
     var body: some Scene {
         WindowGroup {
@@ -27,6 +28,18 @@ struct JusstalkApp: App {
                     #if DEBUG
                     print("[JusstalkApp] Products loaded: \(storeManager.products.count), mainProduct: \(storeManager.mainProduct?.id ?? "nil")")
                     #endif
+                }
+                .onReceive(networkMonitor.$isConnected) { isConnected in
+                    if isConnected {
+                        Task {
+                            await OfflineQueueProcessor.shared.processQueue()
+                        }
+                    }
+                }
+                .task {
+                    if networkMonitor.isConnected {
+                        await OfflineQueueProcessor.shared.processQueue()
+                    }
                 }
         }
     }

@@ -140,6 +140,7 @@ struct PremiumCTASectionJusstalk: View {
             featureRow(icon: "bolt.fill", text: "Transcription rapide")
             featureRow(icon: "sparkles", text: "IA de mise en forme avancée")
             featureRow(icon: "doc.on.doc", text: "Exporter dans tous les formats")
+            featureRow(icon: "wifi.slash", text: "Mode hors-ligne (10 vocaux)")
         }
         .padding(12)
         .background(

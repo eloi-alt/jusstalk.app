@@ -15,7 +15,7 @@ class AudioService: NSObject {
 
     func startRecording() throws -> URL {
         let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .allowBluetooth])
+        try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .allowBluetoothHFP])
         try audioSession.setActive(true)
 
         let audioURL = AudioService.temporaryAudioURL()

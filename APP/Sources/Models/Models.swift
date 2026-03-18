@@ -1,6 +1,6 @@
 import Foundation
 
-struct Transcription: Identifiable {
+struct Transcription: Identifiable, Codable {
     let id: UUID
     var text: String
     let dateCreated: Date

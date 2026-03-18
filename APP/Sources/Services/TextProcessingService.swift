@@ -109,6 +109,13 @@ Transcription:
     }
 
     private func processText(prompt: String) async throws -> String {
+        guard NetworkMonitor.shared.isConnected else {
+            #if DEBUG
+            AppLogger.network.error("No network connection detected")
+            #endif
+            throw TextProcessingError.noConnection
+        }
+
         guard let url = URL(string: apiEndpoint) else {
             throw TextProcessingError.invalidURL
         }
@@ -176,6 +183,7 @@ Transcription:
 
 enum TextProcessingError: Error {
     case invalidURL
+    case noConnection
     case apiError
     case invalidResponse
 
@@ -183,6 +191,8 @@ enum TextProcessingError: Error {
         switch self {
         case .invalidURL:
             return "Invalid API endpoint URL"
+        case .noConnection:
+            return "No internet connection"
         case .apiError:
             return "API request failed"
         case .invalidResponse:

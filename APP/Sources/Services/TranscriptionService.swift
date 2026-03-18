@@ -4,6 +4,7 @@ import CryptoKit
 
 enum TranscriptionError: Error {
     case invalidURL
+    case noConnection
     case networkError
     case invalidResponse
     case apiError(String)
@@ -20,6 +21,13 @@ class TranscriptionService {
     }()
     
     func transcribe(audioURL: URL) async throws -> String {
+        guard NetworkMonitor.shared.isConnected else {
+            #if DEBUG
+            AppLogger.network.error("No network connection detected")
+            #endif
+            throw TranscriptionError.noConnection
+        }
+
         guard let url = URL(string: Config.mistralAPIEndpoint) else {
             throw TranscriptionError.invalidURL
         }

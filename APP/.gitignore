@@ -4,6 +4,7 @@
 
 # Xcode Config (contains API keys - never commit)
 *.xcconfig
+!*.xcconfig.example
 
 # Xcode
 build/

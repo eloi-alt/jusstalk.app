@@ -5,6 +5,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 @MainActor
 class RecordingViewModel: ObservableObject {
@@ -22,12 +23,22 @@ class RecordingViewModel: ObservableObject {
     @Published var paywallReason: String?
     @Published var remainingTrialTranscriptions: Int = 3
     
+    // MARK: - Offline Queue Properties
+    
+    @Published var pendingRecordingsCount: Int = 0
+    @Published var showOfflineSavedToast: Bool = false
+    @Published var showOfflineRecordingPrompt: Bool = false
+    @Published var showOfflineRecordingPromptTrial: Bool = false
+    @Published var showOfflineWarning: Bool = false
+    @Published var shouldStartRecordingAfterPrompt: Bool = false
+    
     // MARK: - Dependencies
     
     private var storeManager: StoreManager?
     private let trialManager = FreeTrialManager.shared
     private let audioService = AudioService()
     private let transcriptionService = TranscriptionService()
+    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Configuration
     
@@ -35,7 +46,15 @@ class RecordingViewModel: ObservableObject {
         self.storeManager = storeManager
         Task {
             await updateRemainingTrialCount()
+            pendingRecordingsCount = OfflineQueueManager.shared.pendingRecordings.count
         }
+        
+        OfflineQueueManager.shared.$pendingRecordings
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] recordings in
+                self?.pendingRecordingsCount = recordings.count
+            }
+            .store(in: &cancellables)
     }
     
     // MARK: - Public Methods
@@ -63,6 +82,23 @@ class RecordingViewModel: ObservableObject {
         errorMessage = nil
         
         let isPremium = storeManager?.isPremium ?? false
+        let isOnline = NetworkMonitor.shared.isConnected
+        
+        if !isOnline {
+            let remainingSlots = OfflineQueueManager.shared.remainingSlots
+            if remainingSlots > 0 {
+                if isPremium {
+                    showOfflineRecordingPrompt = true
+                } else {
+                    showOfflineRecordingPromptTrial = true
+                }
+                return
+            } else {
+                errorMessage = "Limite atteinte : 10 vocaux hors-ligne maximum"
+                return
+            }
+        }
+        
         let isEligible = await checkEligibility(isPremium: isPremium)
         
         if !isEligible {
@@ -81,6 +117,65 @@ class RecordingViewModel: ObservableObject {
             _ = try audioService.startRecording()
             isRecording = true
             statusText = "Recording... Tap to stop"
+        } catch {
+            errorMessage = "Failed to start recording"
+        }
+    }
+    
+    func confirmOfflineWarningAndRecord() {
+        showOfflineWarning = false
+        Task {
+            await startRecordingWithWarning()
+        }
+    }
+    
+    func cancelOfflineWarning() {
+        showOfflineWarning = false
+    }
+    
+    private func startRecordingWithWarning() async {
+        let hasPermission = await audioService.requestMicrophonePermission()
+        guard hasPermission else {
+            errorMessage = "Microphone access required"
+            return
+        }
+
+        do {
+            _ = try audioService.startRecording()
+            isRecording = true
+            statusText = "Recording (hors-ligne)... Tap to stop"
+        } catch {
+            errorMessage = "Failed to start recording"
+        }
+    }
+    
+    func confirmOfflineRecording() {
+        showOfflineRecordingPrompt = false
+        shouldStartRecordingAfterPrompt = true
+        Task {
+            await startRecordingOffline()
+        }
+    }
+    
+    func cancelOfflineRecording() {
+        showOfflineRecordingPrompt = false
+        shouldStartRecordingAfterPrompt = false
+    }
+    
+    private func startRecordingOffline() async {
+        currentTranscription = nil
+        errorMessage = nil
+        
+        let hasPermission = await audioService.requestMicrophonePermission()
+        guard hasPermission else {
+            errorMessage = "Microphone access required"
+            return
+        }
+
+        do {
+            _ = try audioService.startRecording()
+            isRecording = true
+            statusText = "Recording offline... Tap to stop"
         } catch {
             errorMessage = "Failed to start recording"
         }
@@ -122,6 +217,42 @@ class RecordingViewModel: ObservableObject {
         }
         
         let isPremium = storeManager?.isPremium ?? false
+        let isOnline = NetworkMonitor.shared.isConnected
+
+        if !isOnline {
+            if isPremium {
+                do {
+                    _ = try OfflineQueueManager.shared.enqueue(
+                        audioURL: audioURL,
+                        duration: duration,
+                        isPremium: isPremium
+                    )
+                    statusText = "Vocal sauvegardé hors-ligne (\(OfflineQueueManager.shared.pendingRecordings.count)/\(OfflineQueueManager.maxPendingRecordings))"
+                    errorMessage = nil
+                    showOfflineSavedToast = true
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+                        self?.showOfflineSavedToast = false
+                        self?.statusText = "Tap to record"
+                    }
+                } catch OfflineQueueError.queueFull {
+                    errorMessage = "Limite atteinte : 10 vocaux hors-ligne maximum"
+                    statusText = "Tap to record"
+                } catch {
+                    errorMessage = "Impossible de sauvegarder hors-ligne"
+                    statusText = "Tap to record"
+                }
+                audioService.cleanupAudioFile(url: audioURL)
+                isProcessing = false
+                return
+            } else {
+                audioService.cleanupAudioFile(url: audioURL)
+                isProcessing = false
+                shouldShowPaywall = true
+                paywallReason = "offline_queue_premium_only"
+                return
+            }
+        }
 
         await performTranscriptionWithTrialManagement(
             audioURL: audioURL,
@@ -174,6 +305,16 @@ class RecordingViewModel: ObservableObject {
 
                 await updateRemainingTrialCount()
 
+            } catch let error as TranscriptionError {
+                _ = await trialManager.rollbackTrialReservation(reservation.id)
+                currentTranscription = nil
+                switch error {
+                case .noConnection:
+                    errorMessage = "Pas de connexion internet"
+                case .invalidURL, .invalidResponse, .networkError, .apiError:
+                    errorMessage = "Transcription failed: \(error.localizedDescription)"
+                }
+                statusText = "Tap to record"
             } catch {
                 _ = await trialManager.rollbackTrialReservation(reservation.id)
                 currentTranscription = nil
@@ -213,6 +354,18 @@ class RecordingViewModel: ObservableObject {
                 await updateRemainingTrialCount()
             }
 
+        } catch let error as TranscriptionError {
+            if let reservation = reservation {
+                _ = await trialManager.rollbackTrialReservation(reservation.id)
+            }
+            currentTranscription = nil
+            switch error {
+            case .noConnection:
+                errorMessage = "Pas de connexion internet"
+            case .invalidURL, .invalidResponse, .networkError, .apiError:
+                errorMessage = "Transcription failed: \(error.localizedDescription)"
+            }
+            statusText = "Tap to record"
         } catch {
             if let reservation = reservation {
                 _ = await trialManager.rollbackTrialReservation(reservation.id)

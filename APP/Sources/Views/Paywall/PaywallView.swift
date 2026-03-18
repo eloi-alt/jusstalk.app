@@ -10,6 +10,7 @@ struct PaywallView: View {
     @Environment(\.dismiss) private var dismiss
     
     let onPurchaseComplete: () -> Void
+    var paywallReason: String?
     
     var body: some View {
         NavigationView {
@@ -24,14 +25,25 @@ struct PaywallView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                         .shadow(color: .blue.opacity(0.3), radius: 10, x: 0, y: 5)
                     
-                    Text("Essayez la version complète")
-                        .font(.system(size: 22, weight: .bold))
-                        .multilineTextAlignment(.center)
-                    
-                    Text("Votre essai gratuit est terminé.\nDébloquez Jusstalk pour transcrire sans limite.")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
+                    if paywallReason == "offline_queue_premium_only" {
+                        Text("Enregistrement hors-ligne")
+                            .font(.system(size: 22, weight: .bold))
+                            .multilineTextAlignment(.center)
+                        
+                        Text("Sauvegardez jusqu'à 10 vocaux sans connexion. Ils seront automatiquement transcrits à la reconnexion.")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                    } else {
+                        Text("Essayez la version complète")
+                            .font(.system(size: 22, weight: .bold))
+                            .multilineTextAlignment(.center)
+                        
+                        Text("Votre essai gratuit est terminé.\nDébloquez Jusstalk pour transcrire sans limite.")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
                 }
                 .padding(.horizontal, 24)
                 

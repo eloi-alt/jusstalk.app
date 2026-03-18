@@ -26,6 +26,7 @@ struct PremiumPositioningPageView: View {
                     premiumFeatureRow(icon: "bolt.fill", text: "Transcription rapide")
                     premiumFeatureRow(icon: "sparkles", text: "IA de mise en forme avancée")
                     premiumFeatureRow(icon: "doc.on.doc", text: "Exporter dans tous les formats")
+                    premiumFeatureRow(icon: "wifi.slash", text: "Mode hors-ligne")
                 }
                 .padding(.horizontal, 32)
             }

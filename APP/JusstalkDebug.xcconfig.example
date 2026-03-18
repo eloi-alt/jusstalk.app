@@ -1,0 +1,6 @@
+# Jusstalk Debug Configuration
+# Copy this file to JusstalkDebug.xcconfig and fill in your API keys
+# DO NOT commit JusstalkDebug.xcconfig to git
+
+MISTRAL_API_KEY = 
+DEEPSEEK_API_KEY = 
